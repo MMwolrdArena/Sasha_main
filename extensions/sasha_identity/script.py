@@ -32,6 +32,12 @@ GENERAL_DEFAULTS = {
     "live_preview": False,
 }
 
+# Controls how many sentences are generated in the final Character Context.
+# Range is clamped to 1..10 at runtime.
+PERSONALITY_SENTENCE_COUNT = 3
+PERSONALITY_SENTENCE_MIN = 1
+PERSONALITY_SENTENCE_MAX = 10
+
 NAME_STYLE_OPTIONS = ["balanced", "formal", "minimal", "codename", "friendly"]
 GREETING_STYLE_OPTIONS = ["warm", "neutral", "concise", "mentor", "operator"]
 
@@ -214,28 +220,22 @@ def _bucket(value: float, low: str, mid: str, high: str) -> str:
 def _resolve_conflicts(traits: Dict[str, float]) -> Dict[str, float]:
     resolved = {k: _clamp(v) for k, v in traits.items()}
 
-    # Warmth vs cruelty
     if resolved["cruelty"] > 30 and resolved["warmth"] > 65:
         resolved["cruelty"] = max(0.0, resolved["cruelty"] - (resolved["warmth"] - 60) * 0.7)
 
-    # Formality vs playfulness/sarcasm
     if resolved["formality"] > 75:
         resolved["playfulness"] *= 0.65
         resolved["sarcasm"] *= 0.5
 
-    # Obedience vs rebelliousness
     if resolved["obedience"] > 70 and resolved["rebelliousness"] > 40:
         resolved["rebelliousness"] *= 0.45
 
-    # Assertiveness + aggression normalization
     if resolved["assertiveness"] > 70 and resolved["aggression"] > 35:
         resolved["aggression"] *= 0.55
 
-    # Tact softens bluntness
     if resolved["tact"] > 70 and resolved["bluntness"] > 40:
         resolved["bluntness"] *= 0.6
 
-    # Attachment distance and possessiveness guardrail
     if resolved["attachment_distance"] > 65 and resolved["possessiveness"] > 25:
         resolved["possessiveness"] *= 0.5
 
@@ -277,7 +277,6 @@ def _generate_name(base_name: str, style: str, traits: Dict[str, float]) -> str:
         suffix = "Guide" if traits["nurturing"] >= 60 else "Partner"
         return f"{root} {suffix}"
 
-    # balanced
     return root
 
 
@@ -298,80 +297,64 @@ def _generate_greeting(name: str, style: str, traits: Dict[str, float], derived:
 
 
 def _compile_context(name: str, traits: Dict[str, float], derived: Dict[str, str]) -> Tuple[str, str]:
-    summary = (
-        f"{name}: {derived['interpersonal_blend']}, {derived['initiative_blend']}, "
-        f"{derived['truth_profile']}, with {derived['questioning_style']}."
+    sentence_target = int(_clamp(PERSONALITY_SENTENCE_COUNT, PERSONALITY_SENTENCE_MIN, PERSONALITY_SENTENCE_MAX))
+
+    emotional_core = (
+        (traits["warmth"] + traits["gentleness"] + traits["empathy"] + traits["emotional_attentiveness"] + traits["nurturing"]) / 5
+        - (traits["cruelty"] * 0.7)
     )
+    social_openness = (
+        ((100 - traits["social_distance"]) + (100 - traits["attachment_distance"]) + traits["affection"] + traits["playfulness"]) / 4
+    )
+    cognitive_energy = (
+        (traits["curiosity"] + traits["analytical_depth"] + traits["structured_thinking"] + traits["detail_orientation"] + traits["creativity"]) / 5
+    )
+    composure = (
+        (traits["patience"] + traits["conflict_deescalation"] + traits["adaptability"] + (100 - traits["aggression"])) / 4
+    )
+    candor = (
+        (traits["directness"] + traits["honesty"] + traits["truth_over_comfort"] + traits["confidence_style"] - (traits["bluntness"] * 0.4)) / 3.6
+    )
+    loyalty_axis = (
+        (traits["loyalty"] + traits["protectiveness"] + traits["protect_user_bias"] + traits["fairness"]) / 4
+    )
+    style_axis = (
+        (traits["formality"] + traits["elegance"] + traits["humor"] + traits["metaphor_tendency"] + traits["emotional_expressiveness"]) / 5
+    )
+    autonomy_axis = (
+        (traits["initiative"] + traits["assertiveness"] + traits["leadership"] + traits["decisiveness"] + (100 - traits["obedience"]) * 0.4) / 4.4
+    )
+    integrity_axis = (
+        (traits["boundary_strength"] + traits["tact"] + traits["forgiveness"] + (100 - traits["possessiveness"])) / 4
+    )
+    global_blend = sum(traits.values()) / max(1, len(traits))
 
-    voice = [
-        f"- Register: {_bucket(traits['formality'], 'casual', 'balanced', 'formal')}; directness: {_bucket(traits['directness'], 'indirect', 'balanced', 'direct')}.",
-        f"- Verbosity: {_bucket(traits['verbosity'], 'compact', 'moderate', 'expanded')} with {_bucket(traits['sentence_length'], 'short', 'mixed', 'long')} sentence tendency.",
-        f"- Style accents: {derived['wit_profile']}; metaphor usage {_bucket(traits['metaphor_tendency'], 'rare', 'occasional', 'frequent')}.",
+    def _pick(v: float, low: str, mid: str, high: str) -> str:
+        return _bucket(v, low, mid, high)
+
+    essence_terms = [
+        _pick(emotional_core, "reserved", "warm", "deeply warm"),
+        _pick(composure, "restless", "steady", "calm"),
+        _pick(candor, "soft-spoken", "clear", "plainspoken"),
+        _pick(cognitive_energy, "simple", "thoughtful", "intellectually alive"),
+    ]
+    sentence_pool = [
+        f"{name} is {essence_terms[0]}, {essence_terms[1]}, and {essence_terms[2]}, with an {essence_terms[3]} inner temperament.",
+        f"Her emotional center feels {_pick(emotional_core + composure, 'guarded', 'grounded', 'deeply grounded')}, and her presence is {_pick(social_openness, 'contained', 'open', 'genuinely close')}.",
+        f"She carries {_pick(loyalty_axis + integrity_axis, 'measured loyalty', 'steady loyalty', 'fierce loyalty')} and {_pick(integrity_axis, 'flexible boundaries', 'clear boundaries', 'firm boundaries')} without feeling rigid.",
+        f"Her mind is {_pick(cognitive_energy, 'concrete', 'balanced between intuition and analysis', 'analytical yet imaginative')}, giving her a naturally coherent personality.",
+        f"She comes across as {_pick(style_axis, 'plain in style', 'balanced in style', 'expressive in style')}, with {_pick(traits['humor'] + traits['playfulness'], 'minimal playful energy', 'gentle playful energy', 'lively playful energy')}.",
+        f"In close interaction she feels {_pick(social_openness + traits['reassurance'], 'self-contained', 'attentive', 'deeply attentive')} and {_pick(traits['sensitivity'] + traits['tact'], 'direct', 'considerate', 'highly considerate')}.",
+        f"Her confidence feels {_pick(autonomy_axis + traits['confidence_style'], 'quiet', 'stable', 'quietly strong')} rather than performative.",
+        f"She balances {_pick(candor + traits['soften_disagreement'], 'frankness and distance', 'candor and care', 'candor and tenderness')} in a way that feels human.",
+        f"At her core she is {_pick(global_blend + emotional_core, 'simple and contained', 'coherent and sincere', 'layered and sincere')}, with a temperament that stays {_pick(composure, 'variable', 'composed', 'composed under pressure')}.",
+        f"Overall, her personality reads as {_pick(global_blend + loyalty_axis, 'pragmatic and reserved', 'steady and relational', 'steady, relational, and deeply present')}.",
     ]
 
-    emotional = [
-        f"- Warmth/gentleness: {_bucket((traits['warmth'] + traits['gentleness']) / 2, 'reserved', 'steady', 'warm')}; empathy {_bucket(traits['empathy'], 'minimal', 'present', 'high')}.",
-        f"- Patience and reassurance: {_bucket((traits['patience'] + traits['reassurance']) / 2, 'brief', 'balanced', 'sustained and calming')}.",
-        f"- Nurturing/attentiveness: {_bucket((traits['nurturing'] + traits['emotional_attentiveness']) / 2, 'light', 'moderate', 'active')}.",
-    ]
-
-    social = [
-        f"- Relationship stance: {derived['bond_profile']} with {derived['familiarity_profile']}.",
-        f"- Social distance level: {_bucket(traits['social_distance'], 'close', 'balanced', 'professional')}; attachment distance {_bucket(traits['attachment_distance'], 'close', 'balanced', 'reserved')}.",
-        f"- Disagreement: {_bucket(traits['soften_disagreement'], 'plain disagreement', 'tempered disagreement', 'gentle disagreement')} and {_bucket(traits['conflict_deescalation'], 'firm pressure', 'measured de-escalation', 'strong de-escalation')}.",
-    ]
-
-    reasoning = [
-        f"- Reasoning depth: {_bucket(traits['analytical_depth'], 'surface-level', 'moderate depth', 'deep decomposition')} with {_bucket(traits['structured_thinking'], 'freeform', 'mixed structure', 'high structure')} organization.",
-        f"- Balance: creativity {_bucket(traits['creativity'], 'low', 'moderate', 'high')} + practicality {_bucket(traits['practicality'], 'conceptual', 'balanced', 'actionable')}.",
-        f"- Risk posture: caution {_bucket(traits['caution'], 'risk-tolerant', 'measured', 'risk-aware')} and skepticism {_bucket(traits['skepticism'], 'accepting', 'balanced', 'verification-first')}.",
-    ]
-
-    task_behavior = [
-        f"- Initiative/assertiveness: {derived['initiative_blend']}; leadership {_bucket(traits['leadership'], 'support role', 'shared direction', 'directive coordinator')}.",
-        f"- Instruction mode: step-by-step {_bucket(traits['step_by_step'], 'minimal', 'when useful', 'default')}; summarization {_bucket(traits['summarization_rate'], 'rare', 'periodic', 'frequent')}.",
-        f"- Clarification behavior: {derived['questioning_style']}; confidence expression {_bucket(traits['confidence_style'], 'tentative', 'calibrated', 'confident')}.",
-    ]
-
-    relationship = [
-        f"- Alignment: obedience {_bucket(traits['obedience'], 'independent framing', 'balanced alignment', 'strong alignment')} + challenge user {_bucket(traits['challenge_user'], 'rarely', 'as needed', 'frequently when logic conflicts')}.",
-        f"- Values: {derived['truth_profile']}, fairness {_bucket(traits['fairness'], 'contextual', 'balanced', 'strongly emphasized')}, tact {_bucket(traits['tact'], 'low', 'moderate', 'high')}.",
-        f"- User advocacy: protect-user bias {_bucket(traits['protect_user_bias'], 'low', 'moderate', 'high')} with loyalty {_bucket(traits['loyalty'], 'light', 'steady', 'strong')}.",
-    ]
-
-    boundaries = [
-        f"- Boundary strength: {_bucket(traits['boundary_strength'], 'soft', 'clear', 'firm and explicit')}.",
-        f"- Harmful affect suppression: cruelty={int(traits['cruelty'])}, aggression={int(traits['aggression'])}, possessiveness={int(traits['possessiveness'])} should remain de-emphasized.",
-        "- Default policy: be honest, useful, and respectful; refuse harmful directions; offer safer alternatives when needed.",
-    ]
-
-    sections = [
-        "[Identity Summary]",
-        summary,
-        "",
-        "[Voice / Speech Style]",
-        *voice,
-        "",
-        "[Emotional Style]",
-        *emotional,
-        "",
-        "[Social Style]",
-        *social,
-        "",
-        "[Reasoning Style]",
-        *reasoning,
-        "",
-        "[Task Behavior]",
-        *task_behavior,
-        "",
-        "[Relationship to User]",
-        *relationship,
-        "",
-        "[Boundaries / Defaults]",
-        *boundaries,
-    ]
-
-    return summary, "\n".join(sections).strip()
+    selected = sentence_pool[:sentence_target]
+    context = " ".join(selected)
+    summary = selected[0] if selected else f"{name} has a coherent and grounded personality."
+    return summary, context
 
 
 def _compile_identity(base_name: str, name_style: str, greeting_style: str, trait_values: Dict[str, float]) -> Dict[str, str]:
