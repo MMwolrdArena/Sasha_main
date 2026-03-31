@@ -220,28 +220,22 @@ def _bucket(value: float, low: str, mid: str, high: str) -> str:
 def _resolve_conflicts(traits: Dict[str, float]) -> Dict[str, float]:
     resolved = {k: _clamp(v) for k, v in traits.items()}
 
-    # Warmth vs cruelty
     if resolved["cruelty"] > 30 and resolved["warmth"] > 65:
         resolved["cruelty"] = max(0.0, resolved["cruelty"] - (resolved["warmth"] - 60) * 0.7)
 
-    # Formality vs playfulness/sarcasm
     if resolved["formality"] > 75:
         resolved["playfulness"] *= 0.65
         resolved["sarcasm"] *= 0.5
 
-    # Obedience vs rebelliousness
     if resolved["obedience"] > 70 and resolved["rebelliousness"] > 40:
         resolved["rebelliousness"] *= 0.45
 
-    # Assertiveness + aggression normalization
     if resolved["assertiveness"] > 70 and resolved["aggression"] > 35:
         resolved["aggression"] *= 0.55
 
-    # Tact softens bluntness
     if resolved["tact"] > 70 and resolved["bluntness"] > 40:
         resolved["bluntness"] *= 0.6
 
-    # Attachment distance and possessiveness guardrail
     if resolved["attachment_distance"] > 65 and resolved["possessiveness"] > 25:
         resolved["possessiveness"] *= 0.5
 
@@ -283,7 +277,6 @@ def _generate_name(base_name: str, style: str, traits: Dict[str, float]) -> str:
         suffix = "Guide" if traits["nurturing"] >= 60 else "Partner"
         return f"{root} {suffix}"
 
-    # balanced
     return root
 
 
