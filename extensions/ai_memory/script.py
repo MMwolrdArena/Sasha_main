@@ -16,6 +16,7 @@ import numpy as np
 
 from modules import chat, shared
 from modules.logging_colors import logger
+from modules.reasoning import extract_reasoning
 
 try:
     from sentence_transformers import SentenceTransformer
@@ -49,6 +50,7 @@ _state = {
     "last_user_text": "",
 }
 _lock = threading.Lock()
+_THINK_TAG_RE = re.compile(r"</?think>", re.IGNORECASE)
 
 
 def _utc_now_iso() -> str:
@@ -169,6 +171,20 @@ def _shorten(text: str, max_chars: int = _MAX_SNIPPET_CHARS) -> str:
     return text[: max_chars - 3].rstrip() + "..."
 
 
+def _sanitize_assistant_memory_text(text: str) -> str:
+    cleaned = (text or "").strip()
+    if not cleaned:
+        return ""
+
+    _, final_content = extract_reasoning(cleaned, html_escaped=False)
+    candidate = (final_content or "").strip()
+    if candidate:
+        cleaned = candidate
+
+    cleaned = _THINK_TAG_RE.sub("", cleaned).strip()
+    return cleaned
+
+
 def _recency_bonus(timestamp_iso: str) -> float:
     try:
         record_time = datetime.fromisoformat(timestamp_iso.replace("Z", "+00:00"))
@@ -216,7 +232,7 @@ def _format_memory_block(memories: Sequence[sqlite3.Row]) -> str:
                     "[Memory]",
                     f"Timestamp: {timestamp}",
                     f"User: {_shorten(row['input'])}",
-                    f"Sasha: {_shorten(row['response'])}",
+                    f"Sasha: {_shorten(_sanitize_assistant_memory_text(row['response']))}",
                     f"Keywords: {row['keywords'] or ''}",
                 ]
             )
@@ -233,7 +249,7 @@ def _format_memory_block(memories: Sequence[sqlite3.Row]) -> str:
 
 def _save_turn(user_text: str, assistant_text: str) -> None:
     user_text = (user_text or "").strip()
-    assistant_text = (assistant_text or "").strip()
+    assistant_text = _sanitize_assistant_memory_text(assistant_text)
     if not user_text or not assistant_text:
         return
 
