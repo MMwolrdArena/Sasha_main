@@ -114,19 +114,6 @@ def extract_thinking_block(string):
     return extract_reasoning(string, html_escaped=True)
 
 
-def strip_thinking_blocks(string):
-    """Remove leading thinking blocks and return only displayable content."""
-    text = string or ""
-
-    while text.strip():
-        thinking_content, remaining = extract_thinking_block(text)
-        if thinking_content is None:
-            break
-        text = remaining
-
-    return text
-
-
 
 def build_tool_call_block(header, body, message_id, index):
     """Build HTML for a tool call accordion block."""
@@ -356,9 +343,13 @@ def convert_to_markdown(string, message_id=None):
     tool_calls = list(tool_call_pattern.finditer(string))
 
     if not tool_calls:
-        # No tool calls — suppress visible thinking blocks and render only final content
-        remaining_content = strip_thinking_blocks(string)
+        # No tool calls — use original single-pass extraction
+        thinking_content, remaining_content = extract_thinking_block(string)
         blocks = []
+        thinking_html = build_thinking_block(thinking_content, message_id, bool(remaining_content))
+        if thinking_html:
+            blocks.append(thinking_html)
+
         main_html = build_main_content_block(remaining_content)
         if main_html:
             blocks.append(main_html)
@@ -370,19 +361,29 @@ def convert_to_markdown(string, message_id=None):
     html_parts = []
     last_end = 0
     tool_idx = 0
-    def process_text_segment(text):
-        """Process a text segment between tool_call blocks."""
+    think_idx = 0
+
+    def process_text_segment(text, is_last_segment):
+        """Process a text segment between tool_call blocks for thinking content."""
+        nonlocal think_idx
         if not text.strip():
             return
 
-        text = strip_thinking_blocks(text)
+        while text.strip():
+            thinking_content, remaining = extract_thinking_block(text)
+            if thinking_content is None:
+                break
+            has_remaining = bool(remaining.strip()) or not is_last_segment
+            html_parts.append(build_thinking_block(thinking_content, message_id, has_remaining, think_idx))
+            think_idx += 1
+            text = remaining
 
         if text.strip():
             html_parts.append(process_markdown_content(text))
 
     for tc in tool_calls:
         # Process text before this tool_call
-        process_text_segment(string[last_end:tc.start()])
+        process_text_segment(string[last_end:tc.start()], is_last_segment=False)
 
         # Add tool call accordion
         header = tc.group(1).strip()
@@ -392,7 +393,7 @@ def convert_to_markdown(string, message_id=None):
         last_end = tc.end()
 
     # Process text after the last tool_call
-    process_text_segment(string[last_end:])
+    process_text_segment(string[last_end:], is_last_segment=True)
 
     return ''.join(html_parts)
 
