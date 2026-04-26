@@ -16,7 +16,7 @@ from typing import Dict, List, Tuple
 
 import gradio as gr
 
-from modules import chat, shared
+from modules import shared
 from modules.logging_colors import logger
 
 # ============================================================================
@@ -349,12 +349,12 @@ def setup() -> None:
     logger.info(f"{LOG_PREFIX} initialized at {_storage_path()}")
 
 
-def custom_generate_chat_prompt(user_input, state, **kwargs):
+def chat_context_modifier(user_input, state, **kwargs):
     if kwargs.get("impersonate") or kwargs.get("_continue"):
-        return chat.generate_chat_prompt(user_input, state, **kwargs)
+        return ""
 
     if not bool(_state.get("enabled", ENABLED_DEFAULT)):
-        return chat.generate_chat_prompt(user_input, state, **kwargs)
+        return ""
 
     history = (state or {}).get("history", {})
     turn_count = len(_to_turns(history))
@@ -368,13 +368,7 @@ def custom_generate_chat_prompt(user_input, state, **kwargs):
             _save_runtime()
 
     block = _influence_block()
-    query_text = (user_input or "").strip()
-    if block:
-        augmented = f"{block}\n\nCurrent user message:\n{query_text}"
-    else:
-        augmented = query_text
-
-    return chat.generate_chat_prompt(augmented, state, **kwargs)
+    return block if block else ""
 
 
 def ui():
