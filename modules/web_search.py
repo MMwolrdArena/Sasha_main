@@ -25,12 +25,10 @@ DEBUG_WEB_SEARCH = True
 SEARCH_BACKENDS = [
     "duckduckgo_lite",
     "duckduckgo_html",
-    "bing_html",
 ]
 
 DUCKDUCKGO_LITE_URL = "https://lite.duckduckgo.com/lite/?q={query}"
 DUCKDUCKGO_HTML_URL = "https://html.duckduckgo.com/html/?q={query}"
-BING_HTML_URL = "https://www.bing.com/search?q={query}"
 
 DEFAULT_SEARCH_TIMEOUT = 10
 DEFAULT_DOWNLOAD_TIMEOUT = 10
@@ -69,8 +67,6 @@ BLOCKED_DOMAINS = (
     "duckduckgo.com",
     "lite.duckduckgo.com",
     "html.duckduckgo.com",
-    "bing.com/images",
-    "r.bing.com",
 )
 
 BLOCKED_EXACT_PATHS = (
@@ -238,12 +234,12 @@ def _simple_html_to_text(content):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def _request_get(url, timeout, headers=None):
+def _request_get(url, timeout, headers=None, allow_redirects=True):
     request_headers = headers or {"User-Agent": random.choice(USER_AGENTS)}
     last_exception = None
     for attempt in range(REQUEST_RETRY_COUNT + 1):
         try:
-            response = requests.get(url, headers=request_headers, timeout=timeout)
+            response = requests.get(url, headers=request_headers, timeout=timeout, allow_redirects=allow_redirects)
             return response
         except requests.RequestException as exc:
             last_exception = exc
@@ -260,12 +256,17 @@ def _extract_links_from_html(response_text, base_url, num_pages):
 
     candidate_count = len(parser.anchors)
     usable = []
+    seen_urls = set()
+    seen_domains = set()
 
     for href, title in parser.anchors:
         normalized_url = _normalize_search_url(href, base_url)
         if not normalized_url:
             continue
-        if _is_blocked_url(normalized_url):
+        domain = _extract_domain(normalized_url)
+        if normalized_url in seen_urls:
+            continue
+        if DEDUPE_BY_DOMAIN and domain in seen_domains:
             continue
         try:
             _validate_url(normalized_url)
@@ -274,6 +275,9 @@ def _extract_links_from_html(response_text, base_url, num_pages):
 
         cleaned_title = re.sub(r"\s+", " ", title or "").strip() or normalized_url
         usable.append({"title": cleaned_title, "url": normalized_url, "content": ""})
+        seen_urls.add(normalized_url)
+        if domain:
+            seen_domains.add(domain)
 
         if len(usable) >= num_pages:
             break
@@ -293,6 +297,14 @@ def _search_backend(name, url_template, query, num_pages, timeout):
         return [], name
 
     response_text = response.text or ""
+    if response.status_code >= 400:
+        logger.warning(
+            f"[web_search] Backend {name} returned HTTP {response.status_code}, "
+            f"response_len={len(response_text)}"
+        )
+        _debug_log_response_preview(response_text)
+        return [], name
+
     blocked = _looks_like_blocked_response(response_text)
     candidate_count, results = _extract_links_from_html(response_text, search_url, num_pages)
 
@@ -313,10 +325,6 @@ def _search_duckduckgo_lite(query, num_pages, timeout):
 
 def _search_duckduckgo_html(query, num_pages, timeout):
     return _search_backend("duckduckgo_html", DUCKDUCKGO_HTML_URL, query, num_pages, timeout)
-
-
-def _search_bing_html(query, num_pages, timeout):
-    return _search_backend("bing_html", BING_HTML_URL, query, num_pages, timeout)
 
 
 def get_current_timestamp():
@@ -351,7 +359,12 @@ def download_web_page(url, timeout=10, include_links=False):
         current_url = url
         response = None
         for _ in range(MAX_REDIRECTS):
-            response = requests.get(current_url, headers=headers, timeout=timeout, allow_redirects=False)
+            response = _request_get(
+                current_url,
+                timeout=timeout,
+                headers=headers,
+                allow_redirects=False,
+            )
             if response.is_redirect and "Location" in response.headers:
                 current_url = urljoin(current_url, response.headers["Location"])
                 _validate_url(current_url)
@@ -406,7 +419,6 @@ def perform_web_search(query, num_pages=3, max_workers=5, timeout=10, fetch_cont
         backend_map = {
             "duckduckgo_lite": _search_duckduckgo_lite,
             "duckduckgo_html": _search_duckduckgo_html,
-            "bing_html": _search_bing_html,
         }
 
         for backend_name in SEARCH_BACKENDS:
@@ -456,13 +468,20 @@ def perform_web_search(query, num_pages=3, max_workers=5, timeout=10, fetch_cont
 
 def truncate_content_by_tokens(content, max_tokens=8192):
     """Truncate content to fit within token limit using binary search."""
-    if len(shared.tokenizer.encode(content)) <= max_tokens:
+    if not content:
+        return ""
+
+    tokenizer = getattr(shared, "tokenizer", None)
+    if tokenizer is None:
+        return content
+
+    if len(tokenizer.encode(content)) <= max_tokens:
         return content
 
     left, right = 0, len(content)
     while left < right:
         mid = (left + right + 1) // 2
-        if len(shared.tokenizer.encode(content[:mid])) <= max_tokens:
+        if len(tokenizer.encode(content[:mid])) <= max_tokens:
             left = mid
         else:
             right = mid - 1
@@ -517,7 +536,14 @@ def add_web_search_attachments(history, row_idx, user_message, search_query, sta
             history["metadata"][key]["attachments"].append(attachment)
             added_count += 1
 
-        logger.info(f"Added {added_count} successful web search results as attachments.")
+        if added_count == 0:
+            logger.warning(
+                f"[web_search] Found {len(search_results)} search result links, "
+                f"{len(successful_results)} had downloaded content, "
+                "but 0 met attachment quality thresholds."
+            )
+        else:
+            logger.info(f"Added {added_count} successful web search results as attachments.")
 
     except Exception as exc:
         logger.error(f"Error in web search: {exc}")
