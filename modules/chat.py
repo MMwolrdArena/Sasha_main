@@ -29,7 +29,7 @@ from modules.html_generator import (
 )
 from modules.image_utils import open_image_safely
 from modules.logging_colors import logger
-from modules.reasoning import THINKING_FORMATS
+from modules.reasoning import THINKING_FORMATS, extract_reasoning
 from modules.text_generation import (
     generate_reply,
     get_encoded_length,
@@ -903,6 +903,64 @@ def generate_search_query(user_message, state):
     return query
 
 
+def should_use_web_search(user_message, state):
+    if not state.get("enable_web_search"):
+        return False
+    text = (user_message or "").strip().lower()
+    if not text:
+        return False
+    trigger_terms = (
+        "what happened",
+        "latest",
+        "today",
+        "yesterday",
+        "recent",
+        "news",
+        "update",
+        "current",
+        "now",
+        "this week",
+        "this month",
+        "live",
+        "weather",
+        "sports",
+        "price",
+        "stock",
+        "score",
+        "schedule",
+        "election",
+        "government",
+        "policy",
+        "public event",
+    )
+    if any(term in text for term in trigger_terms):
+        return True
+    return bool(re.search(r"\b(20\d{2}|today|yesterday|tomorrow|tonight)\b", text))
+
+
+def build_search_queries(user_message, state):
+    base = re.sub(r"\s+", " ", (user_message or "").strip())
+    if not base:
+        return []
+    current_year = str(datetime.now().year)
+    current_month_year = datetime.now().strftime("%B %Y")
+    variants = [
+        f"{base} news",
+        f"{base} latest update",
+        f"{base} recent news {current_year}",
+        f"{base} {current_month_year} news",
+    ]
+    deduped = []
+    seen = set()
+    for item in [base] + variants:
+        cleaned = item.strip()
+        key = cleaned.lower()
+        if cleaned and key not in seen:
+            seen.add(key)
+            deduped.append(cleaned)
+    return deduped
+
+
 def chatbot_wrapper(text, state, regenerate=False, _continue=False, loading_message=True, for_ui=False):
     # Handle dict format with text and files
     files = []
@@ -943,9 +1001,9 @@ def chatbot_wrapper(text, state, regenerate=False, _continue=False, loading_mess
             add_message_attachment(output, row_idx, file_path, is_user=True)
 
         # Add web search results as attachments if enabled
-        if state.get('enable_web_search', False):
-            search_query = generate_search_query(text, state)
-            add_web_search_attachments(output, row_idx, text, search_query, state)
+        if should_use_web_search(text, state):
+            search_queries = build_search_queries(text, state)
+            add_web_search_attachments(output, row_idx, text, search_queries, state)
 
         # Apply extensions
         text, visible_text = apply_extensions('chat_input', text, visible_text, state)
@@ -1062,6 +1120,10 @@ def chatbot_wrapper(text, state, regenerate=False, _continue=False, loading_mess
             reply = thinking_prefix + reply
 
         # Extract the reply
+        _, cleaned_reply = extract_reasoning(reply, html_escaped=False)
+        if cleaned_reply is not None:
+            reply = cleaned_reply
+
         if state['mode'] in ['chat', 'chat-instruct']:
             if not _continue:
                 reply = reply.lstrip()
@@ -1117,6 +1179,7 @@ def chatbot_wrapper(text, state, regenerate=False, _continue=False, loading_mess
         # extensions also can't handle the raw <tool_call> markup safely.
         if '<tool_call>' not in output['visible'][-1][1]:
             full_internal = output['internal'][-1][1]
+            _, full_internal = extract_reasoning(full_internal, html_escaped=False)
             if state['mode'] in ['chat', 'chat-instruct']:
                 full_visible = re.sub("(<USER>|<user>|{{user}})", state['name1'], full_internal)
             else:
