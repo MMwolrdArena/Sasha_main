@@ -1,0 +1,38 @@
+{
+  "ts": 1775177182,
+  "current": {
+    "calmness": 70,
+    "stress": 21,
+    "patience": 70,
+    "energy": 56,
+    "focus": 83,
+    "attentiveness": 79,
+    "curiosity": 72,
+    "caution": 54,
+    "confidence": 62,
+    "seriousness": 67,
+    "playfulness": 33,
+    "protectiveness": 60,
+    "tenderness": 55,
+    "openness": 69,
+    "social_distance": 40
+  },
+  "baseline": {
+    "calmness": 70,
+    "stress": 28,
+    "patience": 64,
+    "energy": 56,
+    "focus": 68,
+    "attentiveness": 72,
+    "curiosity": 58,
+    "caution": 76,
+    "confidence": 71,
+    "seriousness": 54,
+    "playfulness": 34,
+    "protectiveness": 60,
+    "tenderness": 55,
+    "openness": 52,
+    "social_distance": 40
+  },
+  "compiled": "Right now Sasha is composed attention, relational patience, and decisive steadiness."
+}

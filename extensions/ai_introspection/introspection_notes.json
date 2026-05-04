@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "auto": true,
+  "auto_every_n": 2,
+  "recent_window": 8,
+  "max_notes": 60,
+  "max_note_chars": 180,
+  "depth": 3,
+  "influence_strength": 0.35,
+  "last_auto_turn_count": 0,
+  "notes": [
+    {
+      "ts": 1775290715,
+      "salience": 0.296,
+      "turns": 6,
+      "note": "Topic movement is broad and fast; a compact through-line may reduce drift."
+    },
+    {
+      "ts": 1775357448,
+      "salience": 0.181,
+      "turns": 3,
+      "note": "Topic movement is broad and fast; a compact through-line may reduce drift."
+    }
+  ]
+}

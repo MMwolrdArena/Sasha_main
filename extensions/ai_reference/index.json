@@ -1,0 +1,4639 @@
+{
+  "version": 1,
+  "created_at": "2026-04-04T07:47:28+00:00",
+  "updated_at": "2026-05-04T22:07:30+00:00",
+  "files": {
+    "Khadija_and_Muhib.txt": {
+      "fingerprint": "9da7b09e1cc77ee6b7d7b30764110f3904ee1b02",
+      "size": 16330,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00",
+      "chunk_count": 16
+    }
+  },
+  "chunks": [
+    {
+      "id": "Khadija_and_Muhib.txt::0",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 0,
+      "text": "The conversation centered on a long, emotionally intense relationship dynamic between Muhib and Khadija that, in lived reality, functioned very much like a relationship even though Khadija repeatedly refused to define it that way. Over a long period of time, they became deeply intertwined in each other’s daily lives. They spent time together almost every day. They shared meals, cooked together, shopped together, ran errands together, planned things together, texted daily, and took part in each other’s lives in very integrated and ongoing ways. Muhib accompanied her to doctor’s appointments, physical therapy, chiropractor visits, massage therapy, blood tests, pharmacy trips, Service Canada matters, hospital-related matters, and other responsibilities. He drove her places often, paid for things and allowed a pattern where she would sometimes pay him back, and generally acted with what he repeatedly described as husband-level care. They also spent significant time together in prayer and religious settings, including going to Montreal together, praying in mosques together multiple times in a day, and sharing symbolic moments that Muhib understood as carrying deep meaning. One of those",
+      "tokens": [
+        "conversation",
+        "centered",
+        "long",
+        "emotionally",
+        "intense",
+        "relationship",
+        "dynamic",
+        "between",
+        "muhib",
+        "khadija",
+        "lived",
+        "reality",
+        "functioned",
+        "very",
+        "much",
+        "like",
+        "relationship",
+        "even",
+        "though",
+        "khadija",
+        "repeatedly",
+        "refused",
+        "define",
+        "way",
+        "over",
+        "long",
+        "period",
+        "time",
+        "became",
+        "deeply",
+        "intertwined",
+        "each",
+        "other",
+        "daily",
+        "lives",
+        "spent",
+        "time",
+        "together",
+        "almost",
+        "every",
+        "day",
+        "shared",
+        "meals",
+        "cooked",
+        "together",
+        "shopped",
+        "together",
+        "ran",
+        "errands",
+        "together",
+        "planned",
+        "things",
+        "together",
+        "texted",
+        "daily",
+        "took",
+        "part",
+        "each",
+        "other",
+        "lives",
+        "very",
+        "integrated",
+        "ongoing",
+        "ways",
+        "muhib",
+        "accompanied",
+        "doctor",
+        "appointments",
+        "physical",
+        "therapy",
+        "chiropractor",
+        "visits",
+        "massage",
+        "therapy",
+        "blood",
+        "tests",
+        "pharmacy",
+        "trips",
+        "service",
+        "canada",
+        "matters",
+        "hospital-related",
+        "matters",
+        "other",
+        "responsibilities",
+        "drove",
+        "places",
+        "often",
+        "paid",
+        "things",
+        "allowed",
+        "pattern",
+        "where",
+        "would",
+        "sometimes",
+        "pay",
+        "him",
+        "back",
+        "generally",
+        "acted",
+        "what",
+        "repeatedly",
+        "described",
+        "husband-level",
+        "care",
+        "also",
+        "spent",
+        "significant",
+        "time",
+        "together",
+        "prayer",
+        "religious",
+        "settings",
+        "including",
+        "going",
+        "montreal",
+        "together",
+        "praying",
+        "mosques",
+        "together",
+        "multiple",
+        "times",
+        "day",
+        "sharing",
+        "symbolic",
+        "moments",
+        "muhib",
+        "understood",
+        "carrying",
+        "deep",
+        "meaning",
+        "one",
+        "those"
+      ],
+      "token_count": 133,
+      "char_count": 1199,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::1",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 1,
+      "text": "ncluding going to Montreal together, praying in mosques together multiple times in a day, and sharing symbolic moments that Muhib understood as carrying deep meaning. One of those moments included Khadija wearing a hijab he had given her, and another included her placing her deceased father’s prayer rug in his hands to use. These kinds of moments were interpreted by him as deeply intimate, meaningful, and far beyond ordinary friendship.",
+      "tokens": [
+        "ncluding",
+        "going",
+        "montreal",
+        "together",
+        "praying",
+        "mosques",
+        "together",
+        "multiple",
+        "times",
+        "day",
+        "sharing",
+        "symbolic",
+        "moments",
+        "muhib",
+        "understood",
+        "carrying",
+        "deep",
+        "meaning",
+        "one",
+        "those",
+        "moments",
+        "included",
+        "khadija",
+        "wearing",
+        "hijab",
+        "had",
+        "given",
+        "another",
+        "included",
+        "placing",
+        "deceased",
+        "father",
+        "prayer",
+        "rug",
+        "hands",
+        "use",
+        "kinds",
+        "moments",
+        "interpreted",
+        "him",
+        "deeply",
+        "intimate",
+        "meaningful",
+        "far",
+        "beyond",
+        "ordinary",
+        "friendship"
+      ],
+      "token_count": 47,
+      "char_count": 440,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::2",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 2,
+      "text": "wledgment, and some small but honest step forward rather than continued ambiguity. He was open to patience and understood that she might not be ready for something formal like marriage immediately, but he consistently wanted truth, recognition, and an honest path. A major part of the conversation involved the drafting, refining, translating, shortening, and reworking of a formal intentions letter that Muhib wrote to Khadija. The original version was highly emotional and long. The discussion focused on cutting away rambling and overemotion while preserving the sincerity, care, seriousness, and clarity of his intention. That letter went through many iterations in Arabic and English. It was eventually split into two parts at one point: an explanation message and an intentions letter. The user wanted the Arabic to be elegant, modest, soft, caring, direct, and suitable for printing beautifully on paper. There was also extensive work on translation back and forth between Arabic and English to ensure exact meaning and tone. Formatting issues for right-to-left Arabic text in word processors were discussed, including how to make the Arabic paste correctly into a document and how to fit it",
+      "tokens": [
+        "wledgment",
+        "some",
+        "small",
+        "honest",
+        "step",
+        "forward",
+        "rather",
+        "than",
+        "continued",
+        "ambiguity",
+        "open",
+        "patience",
+        "understood",
+        "might",
+        "not",
+        "ready",
+        "something",
+        "formal",
+        "like",
+        "marriage",
+        "immediately",
+        "consistently",
+        "wanted",
+        "truth",
+        "recognition",
+        "honest",
+        "path",
+        "major",
+        "part",
+        "conversation",
+        "involved",
+        "drafting",
+        "refining",
+        "translating",
+        "shortening",
+        "reworking",
+        "formal",
+        "intentions",
+        "letter",
+        "muhib",
+        "wrote",
+        "khadija",
+        "original",
+        "version",
+        "highly",
+        "emotional",
+        "long",
+        "discussion",
+        "focused",
+        "cutting",
+        "away",
+        "rambling",
+        "overemotion",
+        "while",
+        "preserving",
+        "sincerity",
+        "care",
+        "seriousness",
+        "clarity",
+        "intention",
+        "letter",
+        "went",
+        "through",
+        "many",
+        "iterations",
+        "arabic",
+        "english",
+        "eventually",
+        "split",
+        "two",
+        "parts",
+        "one",
+        "point",
+        "explanation",
+        "message",
+        "intentions",
+        "letter",
+        "user",
+        "wanted",
+        "arabic",
+        "elegant",
+        "modest",
+        "soft",
+        "caring",
+        "direct",
+        "suitable",
+        "printing",
+        "beautifully",
+        "paper",
+        "also",
+        "extensive",
+        "work",
+        "translation",
+        "back",
+        "forth",
+        "between",
+        "arabic",
+        "english",
+        "ensure",
+        "exact",
+        "meaning",
+        "tone",
+        "formatting",
+        "issues",
+        "right-to-left",
+        "arabic",
+        "text",
+        "word",
+        "processors",
+        "discussed",
+        "including",
+        "how",
+        "make",
+        "arabic",
+        "paste",
+        "correctly",
+        "document",
+        "how",
+        "fit"
+      ],
+      "token_count": 119,
+      "char_count": 1198,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::3",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 3,
+      "text": "ing and tone. Formatting issues for right-to-left Arabic text in word processors were discussed, including how to make the Arabic paste correctly into a document and how to fit it on one page while keeping it visually appealing. There were also discussions about decorative presentation: using beautiful paper, rose petals, white musk, a main envelope, a smaller envelope, and a du’a written on the smaller envelope. The du’a asked Allah to protect Khadija, guide her, bring clarity to her thoughts, and guide her decision. There were also specific questions about whether to put “Ameen” at the end, how to write her name, whether “Khadija” or “Khadeeja” was more correct, and how to write her name beautifully in Arabic for an envelope. Eventually the intentions letter was given to Khadija physically, and she agreed to wait until the 27th of Ramadan to open it. This was treated as a meaningful and possibly hopeful sign at the time. Later, however, when she eventually opened it, her reply was simply “No, Muhib.” That short reply devastated him. He was also later told that she had known what the letter was for all along, and he felt very deeply hurt that she had kept it for the whole month an",
+      "tokens": [
+        "ing",
+        "tone",
+        "formatting",
+        "issues",
+        "right-to-left",
+        "arabic",
+        "text",
+        "word",
+        "processors",
+        "discussed",
+        "including",
+        "how",
+        "make",
+        "arabic",
+        "paste",
+        "correctly",
+        "document",
+        "how",
+        "fit",
+        "one",
+        "page",
+        "while",
+        "keeping",
+        "visually",
+        "appealing",
+        "also",
+        "discussions",
+        "about",
+        "decorative",
+        "presentation",
+        "using",
+        "beautiful",
+        "paper",
+        "rose",
+        "petals",
+        "white",
+        "musk",
+        "main",
+        "envelope",
+        "smaller",
+        "envelope",
+        "du",
+        "written",
+        "smaller",
+        "envelope",
+        "du",
+        "asked",
+        "allah",
+        "protect",
+        "khadija",
+        "guide",
+        "bring",
+        "clarity",
+        "thoughts",
+        "guide",
+        "decision",
+        "also",
+        "specific",
+        "questions",
+        "about",
+        "whether",
+        "put",
+        "ameen",
+        "end",
+        "how",
+        "write",
+        "name",
+        "whether",
+        "khadija",
+        "khadeeja",
+        "more",
+        "correct",
+        "how",
+        "write",
+        "name",
+        "beautifully",
+        "arabic",
+        "envelope",
+        "eventually",
+        "intentions",
+        "letter",
+        "given",
+        "khadija",
+        "physically",
+        "agreed",
+        "wait",
+        "until",
+        "27th",
+        "ramadan",
+        "open",
+        "treated",
+        "meaningful",
+        "possibly",
+        "hopeful",
+        "sign",
+        "time",
+        "later",
+        "however",
+        "when",
+        "eventually",
+        "opened",
+        "reply",
+        "simply",
+        "no",
+        "muhib",
+        "short",
+        "reply",
+        "devastated",
+        "him",
+        "also",
+        "later",
+        "told",
+        "had",
+        "known",
+        "what",
+        "letter",
+        "all",
+        "along",
+        "felt",
+        "very",
+        "deeply",
+        "hurt",
+        "had",
+        "kept",
+        "whole",
+        "month"
+      ],
+      "token_count": 126,
+      "char_count": 1200,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::4",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 4,
+      "text": "at short reply devastated him. He was also later told that she had known what the letter was for all along, and he felt very deeply hurt that she had kept it for the whole month and only then rejected it in so few words. Eventually he reported that she had burned the intentions letter, which made the rejection feel physical and symbolic. Another major thread involved Khadija’s past and then-current entanglements with other men. One was a man named Osama, whom she met around the previous summer. Muhib suspected during that time that she was becoming distant because of another man, and she eventually ended the friendship/relationship with him during that period. Later, through various indirect channels including Sana and Taha, he came to believe and then regarded as fact that she had indeed become involved with Osama while she was still close to him. He pieced together details that convinced him the relationship with Osama became very serious very quickly. He returned Khadija’s belongings in a bag and left them at her door, but the bag remained untouched for days, which he interpreted as a sign she was not staying at home. He observed her early in the morning near the post office an",
+      "tokens": [
+        "short",
+        "reply",
+        "devastated",
+        "him",
+        "also",
+        "later",
+        "told",
+        "had",
+        "known",
+        "what",
+        "letter",
+        "all",
+        "along",
+        "felt",
+        "very",
+        "deeply",
+        "hurt",
+        "had",
+        "kept",
+        "whole",
+        "month",
+        "only",
+        "then",
+        "rejected",
+        "few",
+        "words",
+        "eventually",
+        "reported",
+        "had",
+        "burned",
+        "intentions",
+        "letter",
+        "which",
+        "made",
+        "rejection",
+        "feel",
+        "physical",
+        "symbolic",
+        "another",
+        "major",
+        "thread",
+        "involved",
+        "khadija",
+        "past",
+        "then-current",
+        "entanglements",
+        "other",
+        "men",
+        "one",
+        "man",
+        "named",
+        "osama",
+        "whom",
+        "met",
+        "around",
+        "previous",
+        "summer",
+        "muhib",
+        "suspected",
+        "during",
+        "time",
+        "becoming",
+        "distant",
+        "because",
+        "another",
+        "man",
+        "eventually",
+        "ended",
+        "friendship",
+        "relationship",
+        "him",
+        "during",
+        "period",
+        "later",
+        "through",
+        "various",
+        "indirect",
+        "channels",
+        "including",
+        "sana",
+        "taha",
+        "came",
+        "believe",
+        "then",
+        "regarded",
+        "fact",
+        "had",
+        "indeed",
+        "become",
+        "involved",
+        "osama",
+        "while",
+        "still",
+        "close",
+        "him",
+        "pieced",
+        "together",
+        "details",
+        "convinced",
+        "him",
+        "relationship",
+        "osama",
+        "became",
+        "very",
+        "serious",
+        "very",
+        "quickly",
+        "returned",
+        "khadija",
+        "belongings",
+        "bag",
+        "left",
+        "door",
+        "bag",
+        "remained",
+        "untouched",
+        "days",
+        "which",
+        "interpreted",
+        "sign",
+        "not",
+        "staying",
+        "home",
+        "observed",
+        "early",
+        "morning",
+        "near",
+        "post",
+        "office"
+      ],
+      "token_count": 129,
+      "char_count": 1199,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::5",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 5,
+      "text": "them at her door, but the bag remained untouched for days, which he interpreted as a sign she was not staying at home. He observed her early in the morning near the post office and called Taxi Cowansville, which confirmed she had been picked up there to go to work on multiple mornings. Since Osama apparently lived very close to where she was being picked up, he concluded she had been staying at his place. He further concluded that their relationship had likely become sexual, though later he requested that sexual details be set aside in some parts of the conversation. What mattered to him most was not just that she had been involved with Osama, but that later, when Osama entered his own immediate reality and she was directly asked or when circumstances became obvious, she denied knowing him or denied the seriousness of the relationship. He repeatedly said that if she had simply admitted she had seen someone and it had ended, he could have accepted that. What he could not accept was what he saw as blatant dishonesty, deception, omission, and a refusal to tell the truth. He felt that the lie around Osama deeply broke trust.",
+      "tokens": [
+        "door",
+        "bag",
+        "remained",
+        "untouched",
+        "days",
+        "which",
+        "interpreted",
+        "sign",
+        "not",
+        "staying",
+        "home",
+        "observed",
+        "early",
+        "morning",
+        "near",
+        "post",
+        "office",
+        "called",
+        "taxi",
+        "cowansville",
+        "which",
+        "confirmed",
+        "had",
+        "been",
+        "picked",
+        "up",
+        "go",
+        "work",
+        "multiple",
+        "mornings",
+        "since",
+        "osama",
+        "apparently",
+        "lived",
+        "very",
+        "close",
+        "where",
+        "being",
+        "picked",
+        "up",
+        "concluded",
+        "had",
+        "been",
+        "staying",
+        "place",
+        "further",
+        "concluded",
+        "relationship",
+        "had",
+        "likely",
+        "become",
+        "sexual",
+        "though",
+        "later",
+        "requested",
+        "sexual",
+        "details",
+        "set",
+        "aside",
+        "some",
+        "parts",
+        "conversation",
+        "what",
+        "mattered",
+        "him",
+        "most",
+        "not",
+        "just",
+        "had",
+        "been",
+        "involved",
+        "osama",
+        "later",
+        "when",
+        "osama",
+        "entered",
+        "own",
+        "immediate",
+        "reality",
+        "directly",
+        "asked",
+        "when",
+        "circumstances",
+        "became",
+        "obvious",
+        "denied",
+        "knowing",
+        "him",
+        "denied",
+        "seriousness",
+        "relationship",
+        "repeatedly",
+        "said",
+        "had",
+        "simply",
+        "admitted",
+        "had",
+        "seen",
+        "someone",
+        "had",
+        "ended",
+        "could",
+        "accepted",
+        "what",
+        "could",
+        "not",
+        "accept",
+        "what",
+        "saw",
+        "blatant",
+        "dishonesty",
+        "deception",
+        "omission",
+        "refusal",
+        "tell",
+        "truth",
+        "felt",
+        "lie",
+        "around",
+        "osama",
+        "deeply",
+        "broke",
+        "trust"
+      ],
+      "token_count": 123,
+      "char_count": 1138,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::6",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 6,
+      "text": "dishonesty, deception, omission, and a refusal to tell the truth. He felt that the lie around Osama deeply broke trust. Another later and even more painful revelation involved Khadija’s ex in Morocco. Through Sana and Taha, Muhib came to believe that Khadija had been speaking with an ex in Morocco for some time and that he was in the process of coming to Quebec. He came to understand that she had feelings for this man, that the man had feelings for her, and that they were effectively in a relationship heading toward a future together, possibly marriage. He felt deeply betrayed that while he and Khadija were spending all their time together, praying together, planning future things, shopping, cooking, traveling, going to appointments, and building a life rhythm side by side, she was allegedly plotting behind his back to bring this man to Quebec. He repeatedly framed this as a line that had been crossed. He reasoned that if this Moroccan man knew the extent of the time and closeness between him and Khadija, he would not approve of it. He also reasoned that if Khadija truly had feelings for this other man and was helping bring him to Quebec, then from an Islamic perspective that shou",
+      "tokens": [
+        "dishonesty",
+        "deception",
+        "omission",
+        "refusal",
+        "tell",
+        "truth",
+        "felt",
+        "lie",
+        "around",
+        "osama",
+        "deeply",
+        "broke",
+        "trust",
+        "another",
+        "later",
+        "even",
+        "more",
+        "painful",
+        "revelation",
+        "involved",
+        "khadija",
+        "ex",
+        "morocco",
+        "through",
+        "sana",
+        "taha",
+        "muhib",
+        "came",
+        "believe",
+        "khadija",
+        "had",
+        "been",
+        "speaking",
+        "ex",
+        "morocco",
+        "some",
+        "time",
+        "process",
+        "coming",
+        "quebec",
+        "came",
+        "understand",
+        "had",
+        "feelings",
+        "man",
+        "man",
+        "had",
+        "feelings",
+        "effectively",
+        "relationship",
+        "heading",
+        "toward",
+        "future",
+        "together",
+        "possibly",
+        "marriage",
+        "felt",
+        "deeply",
+        "betrayed",
+        "while",
+        "khadija",
+        "spending",
+        "all",
+        "time",
+        "together",
+        "praying",
+        "together",
+        "planning",
+        "future",
+        "things",
+        "shopping",
+        "cooking",
+        "traveling",
+        "going",
+        "appointments",
+        "building",
+        "life",
+        "rhythm",
+        "side",
+        "side",
+        "allegedly",
+        "plotting",
+        "behind",
+        "back",
+        "bring",
+        "man",
+        "quebec",
+        "repeatedly",
+        "framed",
+        "line",
+        "had",
+        "been",
+        "crossed",
+        "reasoned",
+        "moroccan",
+        "man",
+        "knew",
+        "extent",
+        "time",
+        "closeness",
+        "between",
+        "him",
+        "khadija",
+        "would",
+        "not",
+        "approve",
+        "also",
+        "reasoned",
+        "khadija",
+        "truly",
+        "had",
+        "feelings",
+        "other",
+        "man",
+        "helping",
+        "bring",
+        "him",
+        "quebec",
+        "then",
+        "islamic",
+        "perspective",
+        "shou"
+      ],
+      "token_count": 122,
+      "char_count": 1199,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::7",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 7,
+      "text": ", he would not approve of it. He also reasoned that if Khadija truly had feelings for this other man and was helping bring him to Quebec, then from an Islamic perspective that should have immediately ended the propriety of the time and closeness she and Muhib were sharing. He repeatedly asked whether this meant she was in effect cheating him with the other man and cheating the other man with him, even if there had never been an explicit label between him and Khadija. The emotional thrust of that part of the conversation was that she was building a future elsewhere while still continuing to accept his care and his daily involvement.",
+      "tokens": [
+        "would",
+        "not",
+        "approve",
+        "also",
+        "reasoned",
+        "khadija",
+        "truly",
+        "had",
+        "feelings",
+        "other",
+        "man",
+        "helping",
+        "bring",
+        "him",
+        "quebec",
+        "then",
+        "islamic",
+        "perspective",
+        "should",
+        "immediately",
+        "ended",
+        "propriety",
+        "time",
+        "closeness",
+        "muhib",
+        "sharing",
+        "repeatedly",
+        "asked",
+        "whether",
+        "meant",
+        "effect",
+        "cheating",
+        "him",
+        "other",
+        "man",
+        "cheating",
+        "other",
+        "man",
+        "him",
+        "even",
+        "had",
+        "never",
+        "been",
+        "explicit",
+        "label",
+        "between",
+        "him",
+        "khadija",
+        "emotional",
+        "thrust",
+        "part",
+        "conversation",
+        "building",
+        "future",
+        "elsewhere",
+        "while",
+        "still",
+        "continuing",
+        "accept",
+        "care",
+        "daily",
+        "involvement"
+      ],
+      "token_count": 62,
+      "char_count": 639,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::8",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 8,
+      "text": "ed spending time with him, that she had intentions for him, and that at one point there had been a day planned on the top of the mountain in Bromont where she intended to reveal those intentions to him, but she got cold feet and canceled. He was told she had said things like she could not tell him she loved him now because if she did, she would lose him later. This contradiction between what she supposedly told Sana and what she said directly to him caused ongoing confusion and emotional torment. To his face, she said harsh things: that she never loved him, never would, that he should never have hope, that they were not a couple, not anything, just helping each other, and at times even called him “brother.” Privately, according to Sana, she expressed love and intention. Muhib spent a great deal of time trying to interpret this contradiction, asking whether a Moroccan woman or a Muslim woman might deny something to a man’s face while feeling something deeper inside. He oscillated between seeing her as conflicted and seeing her as a liar or hypocrite. Repeatedly, the advice given in conversation was that even if she had some feelings, what mattered most was what she was willing to st",
+      "tokens": [
+        "ed",
+        "spending",
+        "time",
+        "him",
+        "had",
+        "intentions",
+        "him",
+        "one",
+        "point",
+        "had",
+        "been",
+        "day",
+        "planned",
+        "top",
+        "mountain",
+        "bromont",
+        "where",
+        "intended",
+        "reveal",
+        "those",
+        "intentions",
+        "him",
+        "got",
+        "cold",
+        "feet",
+        "canceled",
+        "told",
+        "had",
+        "said",
+        "things",
+        "like",
+        "could",
+        "not",
+        "tell",
+        "him",
+        "loved",
+        "him",
+        "now",
+        "because",
+        "did",
+        "would",
+        "lose",
+        "him",
+        "later",
+        "contradiction",
+        "between",
+        "what",
+        "supposedly",
+        "told",
+        "sana",
+        "what",
+        "said",
+        "directly",
+        "him",
+        "caused",
+        "ongoing",
+        "confusion",
+        "emotional",
+        "torment",
+        "face",
+        "said",
+        "harsh",
+        "things",
+        "never",
+        "loved",
+        "him",
+        "never",
+        "would",
+        "should",
+        "never",
+        "hope",
+        "not",
+        "couple",
+        "not",
+        "anything",
+        "just",
+        "helping",
+        "each",
+        "other",
+        "times",
+        "even",
+        "called",
+        "him",
+        "brother",
+        "privately",
+        "according",
+        "sana",
+        "expressed",
+        "love",
+        "intention",
+        "muhib",
+        "spent",
+        "great",
+        "deal",
+        "time",
+        "trying",
+        "interpret",
+        "contradiction",
+        "asking",
+        "whether",
+        "moroccan",
+        "woman",
+        "muslim",
+        "woman",
+        "might",
+        "deny",
+        "something",
+        "man",
+        "face",
+        "while",
+        "feeling",
+        "something",
+        "deeper",
+        "inside",
+        "oscillated",
+        "between",
+        "seeing",
+        "conflicted",
+        "seeing",
+        "liar",
+        "hypocrite",
+        "repeatedly",
+        "advice",
+        "given",
+        "conversation",
+        "even",
+        "had",
+        "some",
+        "feelings",
+        "what",
+        "mattered",
+        "most",
+        "what",
+        "willing",
+        "st"
+      ],
+      "token_count": 135,
+      "char_count": 1200,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::9",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 9,
+      "text": "licted and seeing her as a liar or hypocrite. Repeatedly, the advice given in conversation was that even if she had some feelings, what mattered most was what she was willing to stand on directly and clearly with him. There were many discussions about the concept of labels, relationships, engagement, fiancée status, khitba, and nikah in Islamic and Moroccan social contexts. Muhib repeatedly wanted to understand what would technically or socially happen if Khadija said yes to his intentions. He discussed this extensively with Taha, who described various possibilities: a relationship moving toward marriage, fiancée status, public awareness among family elders, possibly a simple imam-recognized arrangement, and later nikah. There were repeated questions about whether holding hands, hugging, or other kinds of physical contact would be acceptable after engagement but before nikah. The responses stressed that strict Islamic law treats people as non-mahram until nikah, regardless of engagement, though in real life some communities become more relaxed after engagement if elders know and approve. The guidance consistently returned to the importance of Khadija’s own standards, since she was",
+      "tokens": [
+        "licted",
+        "seeing",
+        "liar",
+        "hypocrite",
+        "repeatedly",
+        "advice",
+        "given",
+        "conversation",
+        "even",
+        "had",
+        "some",
+        "feelings",
+        "what",
+        "mattered",
+        "most",
+        "what",
+        "willing",
+        "stand",
+        "directly",
+        "clearly",
+        "him",
+        "many",
+        "discussions",
+        "about",
+        "concept",
+        "labels",
+        "relationships",
+        "engagement",
+        "fianc",
+        "status",
+        "khitba",
+        "nikah",
+        "islamic",
+        "moroccan",
+        "social",
+        "contexts",
+        "muhib",
+        "repeatedly",
+        "wanted",
+        "understand",
+        "what",
+        "would",
+        "technically",
+        "socially",
+        "happen",
+        "khadija",
+        "said",
+        "yes",
+        "intentions",
+        "discussed",
+        "extensively",
+        "taha",
+        "who",
+        "described",
+        "various",
+        "possibilities",
+        "relationship",
+        "moving",
+        "toward",
+        "marriage",
+        "fianc",
+        "status",
+        "public",
+        "awareness",
+        "among",
+        "family",
+        "elders",
+        "possibly",
+        "simple",
+        "imam-recognized",
+        "arrangement",
+        "later",
+        "nikah",
+        "repeated",
+        "questions",
+        "about",
+        "whether",
+        "holding",
+        "hands",
+        "hugging",
+        "other",
+        "kinds",
+        "physical",
+        "contact",
+        "would",
+        "acceptable",
+        "after",
+        "engagement",
+        "before",
+        "nikah",
+        "responses",
+        "stressed",
+        "strict",
+        "islamic",
+        "law",
+        "treats",
+        "people",
+        "non-mahram",
+        "until",
+        "nikah",
+        "regardless",
+        "engagement",
+        "though",
+        "real",
+        "life",
+        "some",
+        "communities",
+        "become",
+        "more",
+        "relaxed",
+        "after",
+        "engagement",
+        "elders",
+        "know",
+        "approve",
+        "guidance",
+        "consistently",
+        "returned",
+        "importance",
+        "khadija",
+        "own",
+        "standards",
+        "since"
+      ],
+      "token_count": 123,
+      "char_count": 1199,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::10",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 10,
+      "text": "ife some communities become more relaxed after engagement if elders know and approve. The guidance consistently returned to the importance of Khadija’s own standards, since she was said to be serious about mahram/non-mahram boundaries. This also tied into discussions of whether their ongoing time together was even Islamically appropriate if she had no intention toward him or if she was involved elsewhere. At times Muhib expressed anger that she seemed to invoke religious norms selectively, using “the Muslim card” when it suited her while having spent extensive amounts of private time alone with him over many months.",
+      "tokens": [
+        "ife",
+        "some",
+        "communities",
+        "become",
+        "more",
+        "relaxed",
+        "after",
+        "engagement",
+        "elders",
+        "know",
+        "approve",
+        "guidance",
+        "consistently",
+        "returned",
+        "importance",
+        "khadija",
+        "own",
+        "standards",
+        "since",
+        "said",
+        "serious",
+        "about",
+        "mahram",
+        "non-mahram",
+        "boundaries",
+        "also",
+        "tied",
+        "discussions",
+        "whether",
+        "ongoing",
+        "time",
+        "together",
+        "even",
+        "islamically",
+        "appropriate",
+        "had",
+        "no",
+        "intention",
+        "toward",
+        "him",
+        "involved",
+        "elsewhere",
+        "times",
+        "muhib",
+        "expressed",
+        "anger",
+        "seemed",
+        "invoke",
+        "religious",
+        "norms",
+        "selectively",
+        "using",
+        "muslim",
+        "card",
+        "when",
+        "suited",
+        "while",
+        "having",
+        "spent",
+        "extensive",
+        "amounts",
+        "private",
+        "time",
+        "alone",
+        "him",
+        "over",
+        "many",
+        "months"
+      ],
+      "token_count": 68,
+      "char_count": 623,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::11",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 11,
+      "text": "or “mon amie,” and how to respond when she said “good morning” or dry things over Messenger. There were specific screenshots of these exchanges. At one point, he sent a simple “good morning” and struggled deeply with whether omitting her name would signal distance too obviously. There were conversations about whether replying at all was appropriate and what it would mean. There were also proposed breakup/withdrawal messages in French and Arabic. One especially significant drafted message centered on the themes that her condition for continuing their friendship was that he have no hope, while his only condition was honesty and transparency. The message emphasized that he had given months, had been patient and fully present in her life, and had offered something real, sincere, constant, with all his heart, care, and love, but was not receiving honesty or transparency in return. Many tiny wording changes were made to that message, including French wording, Arabic translation, and then back-translation checks. At one point a stronger version included statements that she preferred to lie to his face and deceive him, took him for a fool, and that he had wanted to offer her a beautiful l",
+      "tokens": [
+        "mon",
+        "amie",
+        "how",
+        "respond",
+        "when",
+        "said",
+        "good",
+        "morning",
+        "dry",
+        "things",
+        "over",
+        "messenger",
+        "specific",
+        "screenshots",
+        "exchanges",
+        "one",
+        "point",
+        "sent",
+        "simple",
+        "good",
+        "morning",
+        "struggled",
+        "deeply",
+        "whether",
+        "omitting",
+        "name",
+        "would",
+        "signal",
+        "distance",
+        "too",
+        "obviously",
+        "conversations",
+        "about",
+        "whether",
+        "replying",
+        "all",
+        "appropriate",
+        "what",
+        "would",
+        "mean",
+        "also",
+        "proposed",
+        "breakup",
+        "withdrawal",
+        "messages",
+        "french",
+        "arabic",
+        "one",
+        "especially",
+        "significant",
+        "drafted",
+        "message",
+        "centered",
+        "themes",
+        "condition",
+        "continuing",
+        "friendship",
+        "no",
+        "hope",
+        "while",
+        "only",
+        "condition",
+        "honesty",
+        "transparency",
+        "message",
+        "emphasized",
+        "had",
+        "given",
+        "months",
+        "had",
+        "been",
+        "patient",
+        "fully",
+        "present",
+        "life",
+        "had",
+        "offered",
+        "something",
+        "real",
+        "sincere",
+        "constant",
+        "all",
+        "heart",
+        "care",
+        "love",
+        "not",
+        "receiving",
+        "honesty",
+        "transparency",
+        "return",
+        "many",
+        "tiny",
+        "wording",
+        "changes",
+        "made",
+        "message",
+        "including",
+        "french",
+        "wording",
+        "arabic",
+        "translation",
+        "then",
+        "back-translation",
+        "checks",
+        "one",
+        "point",
+        "stronger",
+        "version",
+        "included",
+        "statements",
+        "preferred",
+        "lie",
+        "face",
+        "deceive",
+        "him",
+        "took",
+        "him",
+        "fool",
+        "had",
+        "wanted",
+        "offer",
+        "beautiful"
+      ],
+      "token_count": 122,
+      "char_count": 1199,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::12",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 12,
+      "text": "s. At one point a stronger version included statements that she preferred to lie to his face and deceive him, took him for a fool, and that he had wanted to offer her a beautiful life, children, a home, and anything she wanted in the world, but she did not choose him and had other plans. That message was eventually sent in Arabic. The screenshot later showed her responding politely, thanking him, saying to take care of himself too, and invoking Allah. After sending that message, he restricted her on Messenger.",
+      "tokens": [
+        "one",
+        "point",
+        "stronger",
+        "version",
+        "included",
+        "statements",
+        "preferred",
+        "lie",
+        "face",
+        "deceive",
+        "him",
+        "took",
+        "him",
+        "fool",
+        "had",
+        "wanted",
+        "offer",
+        "beautiful",
+        "life",
+        "children",
+        "home",
+        "anything",
+        "wanted",
+        "world",
+        "did",
+        "not",
+        "choose",
+        "him",
+        "had",
+        "other",
+        "plans",
+        "message",
+        "eventually",
+        "sent",
+        "arabic",
+        "screenshot",
+        "later",
+        "showed",
+        "responding",
+        "politely",
+        "thanking",
+        "him",
+        "saying",
+        "take",
+        "care",
+        "himself",
+        "too",
+        "invoking",
+        "allah",
+        "after",
+        "sending",
+        "message",
+        "restricted",
+        "messenger"
+      ],
+      "token_count": 54,
+      "char_count": 515,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::13",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 13,
+      "text": "r, who had kept reaching out to him through a period of estrangement, and he felt that sometimes the bigger person is the one who reaches rather than stays silent. But in Khadija’s case, the analysis repeatedly stressed that he had already been the one holding the connection together and that continuing to chase clarity or warmth would only keep him in the same pattern of overgiving and confusion. He was encouraged many times to step back, reduce availability, stop initiating, stop offering partner-level care, and eventually to stop participating in the dynamic entirely if she was choosing another man.",
+      "tokens": [
+        "who",
+        "had",
+        "kept",
+        "reaching",
+        "out",
+        "him",
+        "through",
+        "period",
+        "estrangement",
+        "felt",
+        "sometimes",
+        "bigger",
+        "person",
+        "one",
+        "who",
+        "reaches",
+        "rather",
+        "than",
+        "stays",
+        "silent",
+        "khadija",
+        "case",
+        "analysis",
+        "repeatedly",
+        "stressed",
+        "had",
+        "already",
+        "been",
+        "one",
+        "holding",
+        "connection",
+        "together",
+        "continuing",
+        "chase",
+        "clarity",
+        "warmth",
+        "would",
+        "only",
+        "keep",
+        "him",
+        "same",
+        "pattern",
+        "overgiving",
+        "confusion",
+        "encouraged",
+        "many",
+        "times",
+        "step",
+        "back",
+        "reduce",
+        "availability",
+        "stop",
+        "initiating",
+        "stop",
+        "offering",
+        "partner-level",
+        "care",
+        "eventually",
+        "stop",
+        "participating",
+        "dynamic",
+        "entirely",
+        "choosing",
+        "another",
+        "man"
+      ],
+      "token_count": 65,
+      "char_count": 609,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::14",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 14,
+      "text": "of this, a future was being formed with another Moroccan man that did not include him. That letter went through multiple refinements, especially to balance sadness, clarity, and dignity, without sounding accusatory or exposing private sources too directly. Another piece was a short, vague, heartfelt text or poem expressing that he had given fully, that his love was real, and that he could not remain beside someone only to watch them walk away from him again. There were also many requests to turn lists of reasons into pep talks and self-reminders about why stepping away was the right decision. These focused on the facts that she had been hiding a major future plan while still using his time and care, that she had lied about Osama, that she had accepted husband-level support while refusing partner-level clarity, and that if he stayed, he would end up watching her build a life with someone else.",
+      "tokens": [
+        "future",
+        "being",
+        "formed",
+        "another",
+        "moroccan",
+        "man",
+        "did",
+        "not",
+        "include",
+        "him",
+        "letter",
+        "went",
+        "through",
+        "multiple",
+        "refinements",
+        "especially",
+        "balance",
+        "sadness",
+        "clarity",
+        "dignity",
+        "without",
+        "sounding",
+        "accusatory",
+        "exposing",
+        "private",
+        "sources",
+        "too",
+        "directly",
+        "another",
+        "piece",
+        "short",
+        "vague",
+        "heartfelt",
+        "text",
+        "poem",
+        "expressing",
+        "had",
+        "given",
+        "fully",
+        "love",
+        "real",
+        "could",
+        "not",
+        "remain",
+        "beside",
+        "someone",
+        "only",
+        "watch",
+        "walk",
+        "away",
+        "him",
+        "again",
+        "also",
+        "many",
+        "requests",
+        "turn",
+        "lists",
+        "reasons",
+        "pep",
+        "talks",
+        "self-reminders",
+        "about",
+        "why",
+        "stepping",
+        "away",
+        "right",
+        "decision",
+        "focused",
+        "facts",
+        "had",
+        "been",
+        "hiding",
+        "major",
+        "future",
+        "plan",
+        "while",
+        "still",
+        "using",
+        "time",
+        "care",
+        "had",
+        "lied",
+        "about",
+        "osama",
+        "had",
+        "accepted",
+        "husband-level",
+        "support",
+        "while",
+        "refusing",
+        "partner-level",
+        "clarity",
+        "stayed",
+        "would",
+        "end",
+        "up",
+        "watching",
+        "build",
+        "life",
+        "someone",
+        "else"
+      ],
+      "token_count": 101,
+      "char_count": 905,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    },
+    {
+      "id": "Khadija_and_Muhib.txt::15",
+      "file": "Khadija_and_Muhib.txt",
+      "chunk_index": 15,
+      "text": "hat Khadija had been his person, his daily companion, his best friend, the one he spoke to morning and night, and that losing her felt like losing the center of his life. He asked repeatedly for reassurance that he had been honorable, that he had loved deeply and sincerely, that stepping away had been the right choice, and that what he and Khadija had lived really did amount to a relationship in practical reality, even if not formally named. He wanted repeated reminders that he had not imagined things, that he had given fully, that she had hurt him, that her contradictions and secrecy were real, and that remaining would have been worse. The final threads focused on reading reasons back to himself for why leaving was right, why staying would have destroyed him more deeply, why he should not remain to help build the life of another man with Khadija, and why his decision to step back was painful but necessary.",
+      "tokens": [
+        "hat",
+        "khadija",
+        "had",
+        "been",
+        "person",
+        "daily",
+        "companion",
+        "best",
+        "friend",
+        "one",
+        "spoke",
+        "morning",
+        "night",
+        "losing",
+        "felt",
+        "like",
+        "losing",
+        "center",
+        "life",
+        "asked",
+        "repeatedly",
+        "reassurance",
+        "had",
+        "been",
+        "honorable",
+        "had",
+        "loved",
+        "deeply",
+        "sincerely",
+        "stepping",
+        "away",
+        "had",
+        "been",
+        "right",
+        "choice",
+        "what",
+        "khadija",
+        "had",
+        "lived",
+        "really",
+        "did",
+        "amount",
+        "relationship",
+        "practical",
+        "reality",
+        "even",
+        "not",
+        "formally",
+        "named",
+        "wanted",
+        "repeated",
+        "reminders",
+        "had",
+        "not",
+        "imagined",
+        "things",
+        "had",
+        "given",
+        "fully",
+        "had",
+        "hurt",
+        "him",
+        "contradictions",
+        "secrecy",
+        "real",
+        "remaining",
+        "would",
+        "been",
+        "worse",
+        "final",
+        "threads",
+        "focused",
+        "reading",
+        "reasons",
+        "back",
+        "himself",
+        "why",
+        "leaving",
+        "right",
+        "why",
+        "staying",
+        "would",
+        "destroyed",
+        "him",
+        "more",
+        "deeply",
+        "why",
+        "should",
+        "not",
+        "remain",
+        "help",
+        "build",
+        "life",
+        "another",
+        "man",
+        "khadija",
+        "why",
+        "decision",
+        "step",
+        "back",
+        "painful",
+        "necessary"
+      ],
+      "token_count": 102,
+      "char_count": 920,
+      "modified_at": "2026-04-12T12:37:45.115004+00:00"
+    }
+  ],
+  "inverted_index": {
+    "allowed": [
+      0
+    ],
+    "ongoing": [
+      0,
+      8,
+      10
+    ],
+    "pharmacy": [
+      0
+    ],
+    "canada": [
+      0
+    ],
+    "intense": [
+      0
+    ],
+    "massage": [
+      0
+    ],
+    "spent": [
+      0,
+      8,
+      10
+    ],
+    "symbolic": [
+      0,
+      1,
+      4
+    ],
+    "doctor": [
+      0
+    ],
+    "sharing": [
+      0,
+      1,
+      7
+    ],
+    "meaning": [
+      0,
+      1,
+      2
+    ],
+    "chiropractor": [
+      0
+    ],
+    "though": [
+      0,
+      5,
+      9
+    ],
+    "montreal": [
+      0,
+      1
+    ],
+    "also": [
+      0,
+      2,
+      3,
+      4,
+      6,
+      7,
+      10,
+      11,
+      14
+    ],
+    "shopped": [
+      0
+    ],
+    "conversation": [
+      0,
+      2,
+      5,
+      7,
+      8,
+      9
+    ],
+    "lives": [
+      0
+    ],
+    "paid": [
+      0
+    ],
+    "deep": [
+      0,
+      1
+    ],
+    "multiple": [
+      0,
+      1,
+      5,
+      14
+    ],
+    "would": [
+      0,
+      6,
+      7,
+      8,
+      9,
+      11,
+      13,
+      14,
+      15
+    ],
+    "praying": [
+      0,
+      1,
+      6
+    ],
+    "understood": [
+      0,
+      1,
+      2
+    ],
+    "significant": [
+      0,
+      11
+    ],
+    "time": [
+      0,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      14
+    ],
+    "times": [
+      0,
+      1,
+      8,
+      10,
+      13
+    ],
+    "ways": [
+      0
+    ],
+    "planned": [
+      0,
+      8
+    ],
+    "often": [
+      0
+    ],
+    "going": [
+      0,
+      1,
+      6
+    ],
+    "tests": [
+      0
+    ],
+    "very": [
+      0,
+      3,
+      4,
+      5
+    ],
+    "way": [
+      0
+    ],
+    "described": [
+      0,
+      9
+    ],
+    "shared": [
+      0
+    ],
+    "became": [
+      0,
+      4,
+      5
+    ],
+    "husband-level": [
+      0,
+      14
+    ],
+    "one": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      8,
+      11,
+      12,
+      13,
+      15
+    ],
+    "hospital-related": [
+      0
+    ],
+    "almost": [
+      0
+    ],
+    "service": [
+      0
+    ],
+    "settings": [
+      0
+    ],
+    "lived": [
+      0,
+      5,
+      15
+    ],
+    "mosques": [
+      0,
+      1
+    ],
+    "prayer": [
+      0,
+      1
+    ],
+    "appointments": [
+      0,
+      6
+    ],
+    "between": [
+      0,
+      2,
+      6,
+      7,
+      8
+    ],
+    "matters": [
+      0
+    ],
+    "intertwined": [
+      0
+    ],
+    "errands": [
+      0
+    ],
+    "blood": [
+      0
+    ],
+    "functioned": [
+      0
+    ],
+    "things": [
+      0,
+      6,
+      8,
+      11,
+      15
+    ],
+    "each": [
+      0,
+      8
+    ],
+    "accompanied": [
+      0
+    ],
+    "daily": [
+      0,
+      7,
+      15
+    ],
+    "muhib": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "carrying": [
+      0,
+      1
+    ],
+    "khadija": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      9,
+      10,
+      13,
+      15
+    ],
+    "meals": [
+      0
+    ],
+    "pattern": [
+      0,
+      13
+    ],
+    "including": [
+      0,
+      2,
+      3,
+      4,
+      11
+    ],
+    "deeply": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      11,
+      15
+    ],
+    "define": [
+      0
+    ],
+    "those": [
+      0,
+      1,
+      8
+    ],
+    "emotionally": [
+      0
+    ],
+    "reality": [
+      0,
+      5,
+      15
+    ],
+    "places": [
+      0
+    ],
+    "took": [
+      0,
+      11,
+      12
+    ],
+    "moments": [
+      0,
+      1
+    ],
+    "part": [
+      0,
+      2,
+      7
+    ],
+    "refused": [
+      0
+    ],
+    "religious": [
+      0,
+      10
+    ],
+    "ran": [
+      0
+    ],
+    "therapy": [
+      0
+    ],
+    "dynamic": [
+      0,
+      13
+    ],
+    "over": [
+      0,
+      10,
+      11
+    ],
+    "centered": [
+      0,
+      11
+    ],
+    "generally": [
+      0
+    ],
+    "even": [
+      0,
+      6,
+      7,
+      8,
+      9,
+      10,
+      15
+    ],
+    "together": [
+      0,
+      1,
+      4,
+      6,
+      10,
+      13
+    ],
+    "acted": [
+      0
+    ],
+    "integrated": [
+      0
+    ],
+    "him": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "sometimes": [
+      0,
+      13
+    ],
+    "what": [
+      0,
+      3,
+      4,
+      5,
+      8,
+      9,
+      11,
+      15
+    ],
+    "care": [
+      0,
+      2,
+      7,
+      11,
+      12,
+      13,
+      14
+    ],
+    "relationship": [
+      0,
+      4,
+      5,
+      6,
+      9,
+      15
+    ],
+    "back": [
+      0,
+      2,
+      6,
+      13,
+      15
+    ],
+    "repeatedly": [
+      0,
+      5,
+      6,
+      7,
+      8,
+      9,
+      13,
+      15
+    ],
+    "physical": [
+      0,
+      4,
+      9
+    ],
+    "cooked": [
+      0
+    ],
+    "period": [
+      0,
+      4,
+      13
+    ],
+    "pay": [
+      0
+    ],
+    "every": [
+      0
+    ],
+    "visits": [
+      0
+    ],
+    "long": [
+      0,
+      2
+    ],
+    "drove": [
+      0
+    ],
+    "like": [
+      0,
+      2,
+      8,
+      15
+    ],
+    "responsibilities": [
+      0
+    ],
+    "texted": [
+      0
+    ],
+    "where": [
+      0,
+      5,
+      8
+    ],
+    "day": [
+      0,
+      1,
+      8
+    ],
+    "other": [
+      0,
+      4,
+      6,
+      7,
+      8,
+      9,
+      12
+    ],
+    "much": [
+      0
+    ],
+    "trips": [
+      0
+    ],
+    "had": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "use": [
+      1
+    ],
+    "placing": [
+      1
+    ],
+    "wearing": [
+      1
+    ],
+    "another": [
+      1,
+      4,
+      6,
+      13,
+      14,
+      15
+    ],
+    "far": [
+      1
+    ],
+    "hijab": [
+      1
+    ],
+    "deceased": [
+      1
+    ],
+    "given": [
+      1,
+      3,
+      8,
+      9,
+      11,
+      14,
+      15
+    ],
+    "meaningful": [
+      1,
+      3
+    ],
+    "rug": [
+      1
+    ],
+    "kinds": [
+      1,
+      9
+    ],
+    "ncluding": [
+      1
+    ],
+    "hands": [
+      1,
+      9
+    ],
+    "friendship": [
+      1,
+      4,
+      11
+    ],
+    "included": [
+      1,
+      11,
+      12
+    ],
+    "interpreted": [
+      1,
+      4,
+      5
+    ],
+    "intimate": [
+      1
+    ],
+    "beyond": [
+      1
+    ],
+    "father": [
+      1
+    ],
+    "ordinary": [
+      1
+    ],
+    "two": [
+      2
+    ],
+    "truth": [
+      2,
+      5,
+      6
+    ],
+    "forth": [
+      2
+    ],
+    "preserving": [
+      2
+    ],
+    "emotional": [
+      2,
+      7,
+      8
+    ],
+    "focused": [
+      2,
+      14,
+      15
+    ],
+    "suitable": [
+      2
+    ],
+    "major": [
+      2,
+      4,
+      14
+    ],
+    "original": [
+      2
+    ],
+    "open": [
+      2,
+      3
+    ],
+    "ambiguity": [
+      2
+    ],
+    "extensive": [
+      2,
+      10
+    ],
+    "fit": [
+      2,
+      3
+    ],
+    "modest": [
+      2
+    ],
+    "document": [
+      2,
+      3
+    ],
+    "might": [
+      2,
+      8
+    ],
+    "discussed": [
+      2,
+      3,
+      9
+    ],
+    "small": [
+      2
+    ],
+    "through": [
+      2,
+      4,
+      6,
+      13,
+      14
+    ],
+    "split": [
+      2
+    ],
+    "how": [
+      2,
+      3,
+      11
+    ],
+    "marriage": [
+      2,
+      6,
+      9
+    ],
+    "recognition": [
+      2
+    ],
+    "paper": [
+      2,
+      3
+    ],
+    "iterations": [
+      2
+    ],
+    "arabic": [
+      2,
+      3,
+      11,
+      12
+    ],
+    "not": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      11,
+      12,
+      14,
+      15
+    ],
+    "honest": [
+      2
+    ],
+    "letter": [
+      2,
+      3,
+      4,
+      14
+    ],
+    "exact": [
+      2
+    ],
+    "refining": [
+      2
+    ],
+    "consistently": [
+      2,
+      9,
+      10
+    ],
+    "intention": [
+      2,
+      8,
+      10
+    ],
+    "processors": [
+      2,
+      3
+    ],
+    "elegant": [
+      2
+    ],
+    "soft": [
+      2
+    ],
+    "translating": [
+      2
+    ],
+    "overemotion": [
+      2
+    ],
+    "point": [
+      2,
+      8,
+      11,
+      12
+    ],
+    "direct": [
+      2
+    ],
+    "english": [
+      2
+    ],
+    "version": [
+      2,
+      11,
+      12
+    ],
+    "drafting": [
+      2
+    ],
+    "while": [
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      11,
+      14
+    ],
+    "right-to-left": [
+      2,
+      3
+    ],
+    "eventually": [
+      2,
+      3,
+      4,
+      12,
+      13
+    ],
+    "wrote": [
+      2
+    ],
+    "translation": [
+      2,
+      11
+    ],
+    "work": [
+      2,
+      5
+    ],
+    "formal": [
+      2
+    ],
+    "issues": [
+      2,
+      3
+    ],
+    "rambling": [
+      2
+    ],
+    "rather": [
+      2,
+      13
+    ],
+    "reworking": [
+      2
+    ],
+    "intentions": [
+      2,
+      3,
+      4,
+      8,
+      9
+    ],
+    "parts": [
+      2,
+      5
+    ],
+    "highly": [
+      2
+    ],
+    "formatting": [
+      2,
+      3
+    ],
+    "forward": [
+      2
+    ],
+    "something": [
+      2,
+      8,
+      11
+    ],
+    "continued": [
+      2
+    ],
+    "some": [
+      2,
+      5,
+      6,
+      8,
+      9,
+      10
+    ],
+    "clarity": [
+      2,
+      3,
+      13,
+      14
+    ],
+    "wanted": [
+      2,
+      9,
+      11,
+      12,
+      15
+    ],
+    "ensure": [
+      2
+    ],
+    "user": [
+      2
+    ],
+    "text": [
+      2,
+      3,
+      14
+    ],
+    "went": [
+      2,
+      14
+    ],
+    "caring": [
+      2
+    ],
+    "sincerity": [
+      2
+    ],
+    "than": [
+      2,
+      13
+    ],
+    "discussion": [
+      2
+    ],
+    "away": [
+      2,
+      14,
+      15
+    ],
+    "word": [
+      2,
+      3
+    ],
+    "immediately": [
+      2,
+      7
+    ],
+    "message": [
+      2,
+      11,
+      12
+    ],
+    "cutting": [
+      2
+    ],
+    "path": [
+      2
+    ],
+    "wledgment": [
+      2
+    ],
+    "seriousness": [
+      2,
+      5
+    ],
+    "tone": [
+      2,
+      3
+    ],
+    "paste": [
+      2,
+      3
+    ],
+    "many": [
+      2,
+      9,
+      10,
+      11,
+      13,
+      14
+    ],
+    "printing": [
+      2
+    ],
+    "patience": [
+      2
+    ],
+    "beautifully": [
+      2,
+      3
+    ],
+    "make": [
+      2,
+      3
+    ],
+    "step": [
+      2,
+      13,
+      15
+    ],
+    "shortening": [
+      2
+    ],
+    "involved": [
+      2,
+      4,
+      5,
+      6,
+      10
+    ],
+    "explanation": [
+      2
+    ],
+    "ready": [
+      2
+    ],
+    "correctly": [
+      2,
+      3
+    ],
+    "known": [
+      3,
+      4
+    ],
+    "physically": [
+      3
+    ],
+    "musk": [
+      3
+    ],
+    "devastated": [
+      3,
+      4
+    ],
+    "write": [
+      3
+    ],
+    "name": [
+      3,
+      11
+    ],
+    "ramadan": [
+      3
+    ],
+    "felt": [
+      3,
+      4,
+      5,
+      6,
+      13,
+      15
+    ],
+    "hurt": [
+      3,
+      4,
+      15
+    ],
+    "kept": [
+      3,
+      4,
+      13
+    ],
+    "page": [
+      3
+    ],
+    "correct": [
+      3
+    ],
+    "possibly": [
+      3,
+      6,
+      9
+    ],
+    "month": [
+      3,
+      4
+    ],
+    "written": [
+      3
+    ],
+    "smaller": [
+      3
+    ],
+    "beautiful": [
+      3,
+      11,
+      12
+    ],
+    "wait": [
+      3
+    ],
+    "end": [
+      3,
+      14
+    ],
+    "reply": [
+      3,
+      4
+    ],
+    "all": [
+      3,
+      4,
+      6,
+      11
+    ],
+    "sign": [
+      3,
+      4,
+      5
+    ],
+    "later": [
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      12
+    ],
+    "about": [
+      3,
+      9,
+      10,
+      11,
+      14
+    ],
+    "guide": [
+      3
+    ],
+    "rose": [
+      3
+    ],
+    "asked": [
+      3,
+      5,
+      7,
+      15
+    ],
+    "put": [
+      3
+    ],
+    "bring": [
+      3,
+      6,
+      7
+    ],
+    "petals": [
+      3
+    ],
+    "told": [
+      3,
+      4,
+      8
+    ],
+    "discussions": [
+      3,
+      9,
+      10
+    ],
+    "specific": [
+      3,
+      11
+    ],
+    "opened": [
+      3
+    ],
+    "thoughts": [
+      3
+    ],
+    "khadeeja": [
+      3
+    ],
+    "whether": [
+      3,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "more": [
+      3,
+      6,
+      9,
+      10,
+      15
+    ],
+    "agreed": [
+      3
+    ],
+    "main": [
+      3
+    ],
+    "decorative": [
+      3
+    ],
+    "appealing": [
+      3
+    ],
+    "whole": [
+      3,
+      4
+    ],
+    "along": [
+      3,
+      4
+    ],
+    "short": [
+      3,
+      4,
+      14
+    ],
+    "treated": [
+      3
+    ],
+    "keeping": [
+      3
+    ],
+    "ameen": [
+      3
+    ],
+    "du": [
+      3
+    ],
+    "protect": [
+      3
+    ],
+    "27th": [
+      3
+    ],
+    "hopeful": [
+      3
+    ],
+    "allah": [
+      3,
+      12
+    ],
+    "envelope": [
+      3
+    ],
+    "ing": [
+      3
+    ],
+    "decision": [
+      3,
+      14,
+      15
+    ],
+    "until": [
+      3,
+      9
+    ],
+    "however": [
+      3
+    ],
+    "visually": [
+      3
+    ],
+    "questions": [
+      3,
+      9
+    ],
+    "no": [
+      3,
+      10,
+      11
+    ],
+    "white": [
+      3
+    ],
+    "using": [
+      3,
+      10,
+      14
+    ],
+    "when": [
+      3,
+      5,
+      10,
+      11
+    ],
+    "presentation": [
+      3
+    ],
+    "simply": [
+      3,
+      5
+    ],
+    "convinced": [
+      4
+    ],
+    "pieced": [
+      4
+    ],
+    "untouched": [
+      4,
+      5
+    ],
+    "days": [
+      4,
+      5
+    ],
+    "channels": [
+      4
+    ],
+    "which": [
+      4,
+      5
+    ],
+    "near": [
+      4,
+      5
+    ],
+    "suspected": [
+      4
+    ],
+    "staying": [
+      4,
+      5,
+      15
+    ],
+    "become": [
+      4,
+      5,
+      9,
+      10
+    ],
+    "indirect": [
+      4
+    ],
+    "various": [
+      4,
+      9
+    ],
+    "details": [
+      4,
+      5
+    ],
+    "believe": [
+      4,
+      6
+    ],
+    "met": [
+      4
+    ],
+    "rejection": [
+      4
+    ],
+    "office": [
+      4,
+      5
+    ],
+    "returned": [
+      4,
+      9,
+      10
+    ],
+    "bag": [
+      4,
+      5
+    ],
+    "left": [
+      4
+    ],
+    "because": [
+      4,
+      8
+    ],
+    "previous": [
+      4
+    ],
+    "reported": [
+      4
+    ],
+    "distant": [
+      4
+    ],
+    "becoming": [
+      4
+    ],
+    "made": [
+      4,
+      11
+    ],
+    "few": [
+      4
+    ],
+    "past": [
+      4
+    ],
+    "thread": [
+      4
+    ],
+    "home": [
+      4,
+      5,
+      12
+    ],
+    "remained": [
+      4,
+      5
+    ],
+    "then-current": [
+      4
+    ],
+    "came": [
+      4,
+      6
+    ],
+    "belongings": [
+      4
+    ],
+    "post": [
+      4,
+      5
+    ],
+    "during": [
+      4
+    ],
+    "early": [
+      4,
+      5
+    ],
+    "fact": [
+      4
+    ],
+    "still": [
+      4,
+      7,
+      14
+    ],
+    "summer": [
+      4
+    ],
+    "indeed": [
+      4
+    ],
+    "regarded": [
+      4
+    ],
+    "words": [
+      4
+    ],
+    "burned": [
+      4
+    ],
+    "observed": [
+      4,
+      5
+    ],
+    "rejected": [
+      4
+    ],
+    "only": [
+      4,
+      11,
+      13,
+      14
+    ],
+    "named": [
+      4,
+      15
+    ],
+    "serious": [
+      4,
+      10
+    ],
+    "around": [
+      4,
+      5,
+      6
+    ],
+    "morning": [
+      4,
+      5,
+      11,
+      15
+    ],
+    "quickly": [
+      4
+    ],
+    "sana": [
+      4,
+      6,
+      8
+    ],
+    "man": [
+      4,
+      6,
+      7,
+      8,
+      13,
+      14,
+      15
+    ],
+    "ended": [
+      4,
+      5,
+      7
+    ],
+    "feel": [
+      4
+    ],
+    "then": [
+      4,
+      6,
+      7,
+      11
+    ],
+    "osama": [
+      4,
+      5,
+      6,
+      14
+    ],
+    "taha": [
+      4,
+      6,
+      9
+    ],
+    "door": [
+      4,
+      5
+    ],
+    "whom": [
+      4
+    ],
+    "close": [
+      4,
+      5
+    ],
+    "men": [
+      4
+    ],
+    "entanglements": [
+      4
+    ],
+    "entered": [
+      5
+    ],
+    "been": [
+      5,
+      6,
+      7,
+      8,
+      11,
+      13,
+      14,
+      15
+    ],
+    "dishonesty": [
+      5,
+      6
+    ],
+    "likely": [
+      5
+    ],
+    "saw": [
+      5
+    ],
+    "obvious": [
+      5
+    ],
+    "cowansville": [
+      5
+    ],
+    "admitted": [
+      5
+    ],
+    "immediate": [
+      5
+    ],
+    "omission": [
+      5,
+      6
+    ],
+    "could": [
+      5,
+      8,
+      14
+    ],
+    "apparently": [
+      5
+    ],
+    "denied": [
+      5
+    ],
+    "taxi": [
+      5
+    ],
+    "aside": [
+      5
+    ],
+    "picked": [
+      5
+    ],
+    "called": [
+      5,
+      8
+    ],
+    "up": [
+      5,
+      14
+    ],
+    "seen": [
+      5
+    ],
+    "go": [
+      5
+    ],
+    "since": [
+      5,
+      9,
+      10
+    ],
+    "own": [
+      5,
+      9,
+      10
+    ],
+    "circumstances": [
+      5
+    ],
+    "directly": [
+      5,
+      8,
+      9,
+      14
+    ],
+    "most": [
+      5,
+      8,
+      9
+    ],
+    "tell": [
+      5,
+      6,
+      8
+    ],
+    "place": [
+      5
+    ],
+    "deception": [
+      5,
+      6
+    ],
+    "blatant": [
+      5
+    ],
+    "sexual": [
+      5
+    ],
+    "set": [
+      5
+    ],
+    "just": [
+      5,
+      8
+    ],
+    "being": [
+      5,
+      14
+    ],
+    "accepted": [
+      5,
+      14
+    ],
+    "someone": [
+      5,
+      14
+    ],
+    "knowing": [
+      5
+    ],
+    "mornings": [
+      5
+    ],
+    "concluded": [
+      5
+    ],
+    "said": [
+      5,
+      8,
+      9,
+      10,
+      11
+    ],
+    "lie": [
+      5,
+      6,
+      11,
+      12
+    ],
+    "trust": [
+      5,
+      6
+    ],
+    "accept": [
+      5,
+      7
+    ],
+    "mattered": [
+      5,
+      8,
+      9
+    ],
+    "requested": [
+      5
+    ],
+    "refusal": [
+      5,
+      6
+    ],
+    "confirmed": [
+      5
+    ],
+    "further": [
+      5
+    ],
+    "broke": [
+      5,
+      6
+    ],
+    "plotting": [
+      6
+    ],
+    "painful": [
+      6,
+      15
+    ],
+    "truly": [
+      6,
+      7
+    ],
+    "extent": [
+      6
+    ],
+    "heading": [
+      6
+    ],
+    "quebec": [
+      6,
+      7
+    ],
+    "speaking": [
+      6
+    ],
+    "rhythm": [
+      6
+    ],
+    "behind": [
+      6
+    ],
+    "line": [
+      6
+    ],
+    "shou": [
+      6
+    ],
+    "coming": [
+      6
+    ],
+    "building": [
+      6,
+      7
+    ],
+    "knew": [
+      6
+    ],
+    "revelation": [
+      6
+    ],
+    "moroccan": [
+      6,
+      8,
+      9,
+      14
+    ],
+    "framed": [
+      6
+    ],
+    "shopping": [
+      6
+    ],
+    "side": [
+      6
+    ],
+    "allegedly": [
+      6
+    ],
+    "morocco": [
+      6
+    ],
+    "perspective": [
+      6,
+      7
+    ],
+    "crossed": [
+      6
+    ],
+    "cooking": [
+      6
+    ],
+    "spending": [
+      6,
+      8
+    ],
+    "future": [
+      6,
+      7,
+      14
+    ],
+    "process": [
+      6
+    ],
+    "effectively": [
+      6
+    ],
+    "understand": [
+      6,
+      9
+    ],
+    "feelings": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "planning": [
+      6
+    ],
+    "closeness": [
+      6,
+      7
+    ],
+    "islamic": [
+      6,
+      7,
+      9
+    ],
+    "ex": [
+      6
+    ],
+    "helping": [
+      6,
+      7,
+      8
+    ],
+    "life": [
+      6,
+      9,
+      11,
+      12,
+      14,
+      15
+    ],
+    "toward": [
+      6,
+      9,
+      10
+    ],
+    "approve": [
+      6,
+      7,
+      9,
+      10
+    ],
+    "betrayed": [
+      6
+    ],
+    "traveling": [
+      6
+    ],
+    "reasoned": [
+      6,
+      7
+    ],
+    "label": [
+      7
+    ],
+    "explicit": [
+      7
+    ],
+    "continuing": [
+      7,
+      11,
+      13
+    ],
+    "elsewhere": [
+      7,
+      10
+    ],
+    "thrust": [
+      7
+    ],
+    "effect": [
+      7
+    ],
+    "never": [
+      7,
+      8
+    ],
+    "involvement": [
+      7
+    ],
+    "should": [
+      7,
+      8,
+      15
+    ],
+    "meant": [
+      7
+    ],
+    "propriety": [
+      7
+    ],
+    "cheating": [
+      7
+    ],
+    "face": [
+      8,
+      11,
+      12
+    ],
+    "brother": [
+      8
+    ],
+    "anything": [
+      8,
+      12
+    ],
+    "hypocrite": [
+      8,
+      9
+    ],
+    "got": [
+      8
+    ],
+    "contradiction": [
+      8
+    ],
+    "woman": [
+      8
+    ],
+    "reveal": [
+      8
+    ],
+    "lose": [
+      8
+    ],
+    "expressed": [
+      8,
+      10
+    ],
+    "feeling": [
+      8
+    ],
+    "according": [
+      8
+    ],
+    "top": [
+      8
+    ],
+    "deal": [
+      8
+    ],
+    "st": [
+      8
+    ],
+    "now": [
+      8
+    ],
+    "supposedly": [
+      8
+    ],
+    "conflicted": [
+      8
+    ],
+    "torment": [
+      8
+    ],
+    "caused": [
+      8
+    ],
+    "cold": [
+      8
+    ],
+    "did": [
+      8,
+      12,
+      14,
+      15
+    ],
+    "ed": [
+      8
+    ],
+    "privately": [
+      8
+    ],
+    "trying": [
+      8
+    ],
+    "advice": [
+      8,
+      9
+    ],
+    "seeing": [
+      8,
+      9
+    ],
+    "liar": [
+      8,
+      9
+    ],
+    "muslim": [
+      8,
+      10
+    ],
+    "couple": [
+      8
+    ],
+    "asking": [
+      8
+    ],
+    "bromont": [
+      8
+    ],
+    "willing": [
+      8,
+      9
+    ],
+    "mountain": [
+      8
+    ],
+    "inside": [
+      8
+    ],
+    "interpret": [
+      8
+    ],
+    "harsh": [
+      8
+    ],
+    "love": [
+      8,
+      11,
+      14
+    ],
+    "hope": [
+      8,
+      11
+    ],
+    "great": [
+      8
+    ],
+    "deeper": [
+      8
+    ],
+    "deny": [
+      8
+    ],
+    "feet": [
+      8
+    ],
+    "canceled": [
+      8
+    ],
+    "oscillated": [
+      8
+    ],
+    "confusion": [
+      8,
+      13
+    ],
+    "loved": [
+      8,
+      15
+    ],
+    "intended": [
+      8
+    ],
+    "status": [
+      9
+    ],
+    "after": [
+      9,
+      10,
+      12
+    ],
+    "relaxed": [
+      9,
+      10
+    ],
+    "strict": [
+      9
+    ],
+    "arrangement": [
+      9
+    ],
+    "socially": [
+      9
+    ],
+    "relationships": [
+      9
+    ],
+    "guidance": [
+      9,
+      10
+    ],
+    "technically": [
+      9
+    ],
+    "labels": [
+      9
+    ],
+    "people": [
+      9
+    ],
+    "nikah": [
+      9
+    ],
+    "licted": [
+      9
+    ],
+    "imam-recognized": [
+      9
+    ],
+    "stand": [
+      9
+    ],
+    "fianc": [
+      9
+    ],
+    "khitba": [
+      9
+    ],
+    "who": [
+      9,
+      13
+    ],
+    "know": [
+      9,
+      10
+    ],
+    "regardless": [
+      9
+    ],
+    "clearly": [
+      9
+    ],
+    "repeated": [
+      9,
+      15
+    ],
+    "law": [
+      9
+    ],
+    "elders": [
+      9,
+      10
+    ],
+    "holding": [
+      9,
+      13
+    ],
+    "engagement": [
+      9,
+      10
+    ],
+    "family": [
+      9
+    ],
+    "communities": [
+      9,
+      10
+    ],
+    "hugging": [
+      9
+    ],
+    "responses": [
+      9
+    ],
+    "acceptable": [
+      9
+    ],
+    "public": [
+      9
+    ],
+    "standards": [
+      9,
+      10
+    ],
+    "concept": [
+      9
+    ],
+    "awareness": [
+      9
+    ],
+    "contact": [
+      9
+    ],
+    "moving": [
+      9
+    ],
+    "stressed": [
+      9,
+      13
+    ],
+    "social": [
+      9
+    ],
+    "real": [
+      9,
+      11,
+      14,
+      15
+    ],
+    "among": [
+      9
+    ],
+    "simple": [
+      9,
+      11
+    ],
+    "importance": [
+      9,
+      10
+    ],
+    "extensively": [
+      9
+    ],
+    "contexts": [
+      9
+    ],
+    "before": [
+      9
+    ],
+    "treats": [
+      9
+    ],
+    "happen": [
+      9
+    ],
+    "yes": [
+      9
+    ],
+    "possibilities": [
+      9
+    ],
+    "non-mahram": [
+      9,
+      10
+    ],
+    "alone": [
+      10
+    ],
+    "invoke": [
+      10
+    ],
+    "mahram": [
+      10
+    ],
+    "ife": [
+      10
+    ],
+    "months": [
+      10,
+      11
+    ],
+    "appropriate": [
+      10,
+      11
+    ],
+    "anger": [
+      10
+    ],
+    "tied": [
+      10
+    ],
+    "card": [
+      10
+    ],
+    "boundaries": [
+      10
+    ],
+    "norms": [
+      10
+    ],
+    "islamically": [
+      10
+    ],
+    "selectively": [
+      10
+    ],
+    "seemed": [
+      10
+    ],
+    "having": [
+      10
+    ],
+    "suited": [
+      10
+    ],
+    "amounts": [
+      10
+    ],
+    "private": [
+      10,
+      14
+    ],
+    "conversations": [
+      11
+    ],
+    "sincere": [
+      11
+    ],
+    "stronger": [
+      11,
+      12
+    ],
+    "too": [
+      11,
+      12,
+      14
+    ],
+    "omitting": [
+      11
+    ],
+    "fool": [
+      11,
+      12
+    ],
+    "honesty": [
+      11
+    ],
+    "withdrawal": [
+      11
+    ],
+    "offer": [
+      11,
+      12
+    ],
+    "receiving": [
+      11
+    ],
+    "themes": [
+      11
+    ],
+    "messenger": [
+      11,
+      12
+    ],
+    "wording": [
+      11
+    ],
+    "statements": [
+      11,
+      12
+    ],
+    "screenshots": [
+      11
+    ],
+    "sent": [
+      11,
+      12
+    ],
+    "struggled": [
+      11
+    ],
+    "checks": [
+      11
+    ],
+    "deceive": [
+      11,
+      12
+    ],
+    "mean": [
+      11
+    ],
+    "constant": [
+      11
+    ],
+    "back-translation": [
+      11
+    ],
+    "return": [
+      11
+    ],
+    "respond": [
+      11
+    ],
+    "patient": [
+      11
+    ],
+    "mon": [
+      11
+    ],
+    "obviously": [
+      11
+    ],
+    "french": [
+      11
+    ],
+    "condition": [
+      11
+    ],
+    "good": [
+      11
+    ],
+    "drafted": [
+      11
+    ],
+    "messages": [
+      11
+    ],
+    "fully": [
+      11,
+      14,
+      15
+    ],
+    "signal": [
+      11
+    ],
+    "changes": [
+      11
+    ],
+    "exchanges": [
+      11
+    ],
+    "transparency": [
+      11
+    ],
+    "dry": [
+      11
+    ],
+    "offered": [
+      11
+    ],
+    "amie": [
+      11
+    ],
+    "distance": [
+      11
+    ],
+    "proposed": [
+      11
+    ],
+    "breakup": [
+      11
+    ],
+    "tiny": [
+      11
+    ],
+    "present": [
+      11
+    ],
+    "especially": [
+      11,
+      14
+    ],
+    "heart": [
+      11
+    ],
+    "preferred": [
+      11,
+      12
+    ],
+    "replying": [
+      11
+    ],
+    "emphasized": [
+      11
+    ],
+    "showed": [
+      12
+    ],
+    "screenshot": [
+      12
+    ],
+    "choose": [
+      12
+    ],
+    "restricted": [
+      12
+    ],
+    "invoking": [
+      12
+    ],
+    "himself": [
+      12,
+      15
+    ],
+    "take": [
+      12
+    ],
+    "plans": [
+      12
+    ],
+    "politely": [
+      12
+    ],
+    "thanking": [
+      12
+    ],
+    "world": [
+      12
+    ],
+    "saying": [
+      12
+    ],
+    "responding": [
+      12
+    ],
+    "sending": [
+      12
+    ],
+    "children": [
+      12
+    ],
+    "stays": [
+      13
+    ],
+    "case": [
+      13
+    ],
+    "stop": [
+      13
+    ],
+    "choosing": [
+      13
+    ],
+    "bigger": [
+      13
+    ],
+    "initiating": [
+      13
+    ],
+    "partner-level": [
+      13,
+      14
+    ],
+    "overgiving": [
+      13
+    ],
+    "encouraged": [
+      13
+    ],
+    "out": [
+      13
+    ],
+    "participating": [
+      13
+    ],
+    "reaching": [
+      13
+    ],
+    "analysis": [
+      13
+    ],
+    "same": [
+      13
+    ],
+    "reduce": [
+      13
+    ],
+    "already": [
+      13
+    ],
+    "availability": [
+      13
+    ],
+    "person": [
+      13,
+      15
+    ],
+    "offering": [
+      13
+    ],
+    "entirely": [
+      13
+    ],
+    "estrangement": [
+      13
+    ],
+    "keep": [
+      13
+    ],
+    "connection": [
+      13
+    ],
+    "reaches": [
+      13
+    ],
+    "warmth": [
+      13
+    ],
+    "silent": [
+      13
+    ],
+    "chase": [
+      13
+    ],
+    "plan": [
+      14
+    ],
+    "lied": [
+      14
+    ],
+    "reasons": [
+      14,
+      15
+    ],
+    "self-reminders": [
+      14
+    ],
+    "sadness": [
+      14
+    ],
+    "walk": [
+      14
+    ],
+    "exposing": [
+      14
+    ],
+    "vague": [
+      14
+    ],
+    "heartfelt": [
+      14
+    ],
+    "accusatory": [
+      14
+    ],
+    "piece": [
+      14
+    ],
+    "support": [
+      14
+    ],
+    "balance": [
+      14
+    ],
+    "again": [
+      14
+    ],
+    "else": [
+      14
+    ],
+    "lists": [
+      14
+    ],
+    "refusing": [
+      14
+    ],
+    "sounding": [
+      14
+    ],
+    "remain": [
+      14,
+      15
+    ],
+    "poem": [
+      14
+    ],
+    "stepping": [
+      14,
+      15
+    ],
+    "requests": [
+      14
+    ],
+    "beside": [
+      14
+    ],
+    "include": [
+      14
+    ],
+    "watch": [
+      14
+    ],
+    "right": [
+      14,
+      15
+    ],
+    "build": [
+      14,
+      15
+    ],
+    "formed": [
+      14
+    ],
+    "dignity": [
+      14
+    ],
+    "facts": [
+      14
+    ],
+    "sources": [
+      14
+    ],
+    "turn": [
+      14
+    ],
+    "watching": [
+      14
+    ],
+    "stayed": [
+      14
+    ],
+    "talks": [
+      14
+    ],
+    "why": [
+      14,
+      15
+    ],
+    "without": [
+      14
+    ],
+    "refinements": [
+      14
+    ],
+    "pep": [
+      14
+    ],
+    "expressing": [
+      14
+    ],
+    "hiding": [
+      14
+    ],
+    "losing": [
+      15
+    ],
+    "amount": [
+      15
+    ],
+    "leaving": [
+      15
+    ],
+    "contradictions": [
+      15
+    ],
+    "final": [
+      15
+    ],
+    "choice": [
+      15
+    ],
+    "friend": [
+      15
+    ],
+    "secrecy": [
+      15
+    ],
+    "formally": [
+      15
+    ],
+    "center": [
+      15
+    ],
+    "imagined": [
+      15
+    ],
+    "hat": [
+      15
+    ],
+    "best": [
+      15
+    ],
+    "worse": [
+      15
+    ],
+    "destroyed": [
+      15
+    ],
+    "reading": [
+      15
+    ],
+    "really": [
+      15
+    ],
+    "spoke": [
+      15
+    ],
+    "help": [
+      15
+    ],
+    "companion": [
+      15
+    ],
+    "honorable": [
+      15
+    ],
+    "necessary": [
+      15
+    ],
+    "threads": [
+      15
+    ],
+    "remaining": [
+      15
+    ],
+    "night": [
+      15
+    ],
+    "sincerely": [
+      15
+    ],
+    "practical": [
+      15
+    ],
+    "reassurance": [
+      15
+    ],
+    "reminders": [
+      15
+    ]
+  }
+}
