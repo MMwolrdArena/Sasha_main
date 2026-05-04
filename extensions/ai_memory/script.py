@@ -14,7 +14,7 @@ from typing import List, Sequence, Tuple
 
 import numpy as np
 
-from modules import chat, shared
+from modules import shared
 from modules.logging_colors import logger
 
 try:
@@ -271,21 +271,15 @@ def chat_input_modifier(text, visible_text, state):
     return text, visible_text
 
 
-def custom_generate_chat_prompt(user_input, state, **kwargs):
-    # Skip injection for implicit prompt generations where there is no new user message.
+def chat_context_modifier(user_input, state, **kwargs):
     if kwargs.get("impersonate") or kwargs.get("_continue"):
-        return chat.generate_chat_prompt(user_input, state, **kwargs)
+        return ""
 
     query_text = (user_input or "").strip()
     memories = _retrieve_memories(query_text)
     memory_block = _format_memory_block(memories)
 
-    if memory_block:
-        augmented_input = f"{memory_block}\n\nCurrent user message:\n{query_text}"
-    else:
-        augmented_input = query_text
-
-    return chat.generate_chat_prompt(augmented_input, state, **kwargs)
+    return memory_block or ""
 
 
 def output_modifier(string, state, is_chat=False):

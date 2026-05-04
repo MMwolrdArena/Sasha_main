@@ -135,6 +135,17 @@ def _apply_custom_generate_chat_prompt(text, state, **kwargs):
     return None
 
 
+def _collect_chat_context_extensions(user_input, state, **kwargs):
+    blocks = []
+    for extension, _ in iterator():
+        if hasattr(extension, "chat_context_modifier"):
+            block = extension.chat_context_modifier(user_input, state, **kwargs)
+            if block and str(block).strip():
+                blocks.append(str(block).strip())
+
+    return blocks
+
+
 # Extension that modifies the input parameters before they are used
 def _apply_state_modifier_extensions(state):
     for extension, _ in iterator():
@@ -244,6 +255,7 @@ EXTENSION_MAP = {
     "bot_prefix": partial(_apply_string_extensions, "bot_prefix_modifier"),
     "tokenizer": partial(_apply_tokenizer_extensions, "tokenizer_modifier"),
     'logits_processor': partial(_apply_logits_processor_extensions, 'logits_processor_modifier'),
+    "chat_context": _collect_chat_context_extensions,
     "custom_generate_chat_prompt": _apply_custom_generate_chat_prompt,
     "custom_generate_reply": _apply_custom_generate_reply,
     "tokenized_length": _apply_custom_tokenized_length,
