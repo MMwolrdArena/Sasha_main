@@ -1022,9 +1022,15 @@ def chatbot_wrapper(text, state, regenerate=False, _continue=False, loading_mess
         }
     }
 
-    prompt = apply_extensions('custom_generate_chat_prompt', text, state, **kwargs)
-    if prompt is None:
+    context_blocks = apply_extensions('chat_context', text, state, **kwargs)
+    if context_blocks:
+        combined_context = "\n\n".join(context_blocks)
+        text = f"{combined_context}\n\nCurrent user message:\n{text}"
         prompt = generate_chat_prompt(text, state, **kwargs)
+    else:
+        prompt = apply_extensions('custom_generate_chat_prompt', text, state, **kwargs)
+        if prompt is None:
+            prompt = generate_chat_prompt(text, state, **kwargs)
 
     # Add timestamp for assistant's response at the start of generation
     update_message_metadata(output['metadata'], "assistant", row_idx, timestamp=get_current_timestamp(), model_name=shared.model_name)

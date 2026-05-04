@@ -19,7 +19,7 @@ from typing import Dict, List, Optional, Sequence, Tuple
 
 import gradio as gr
 
-from modules import chat, shared
+from modules import shared
 from modules.logging_colors import logger
 
 try:  # Optional PDF parser
@@ -540,14 +540,14 @@ def setup() -> None:
         logger.info(f"[ai_reference] Reference folder: {_STATE['reference_dir']}")
 
 
-def custom_generate_chat_prompt(user_input, state, **kwargs):
+def chat_context_modifier(user_input, state, **kwargs):
     if kwargs.get("impersonate") or kwargs.get("_continue"):
-        return chat.generate_chat_prompt(user_input, state, **kwargs)
+        return ""
 
     query = (user_input or "").strip()
     with _LOCK:
         if not _STATE["config"].get("enabled", True):
-            return chat.generate_chat_prompt(user_input, state, **kwargs)
+            return ""
 
         if _STATE["config"].get("auto_index", True):
             _index_files(force_full=False)
@@ -556,8 +556,7 @@ def custom_generate_chat_prompt(user_input, state, **kwargs):
         _update_retrieval_snapshot(query, retrieved)
         injection = _format_injection(query, retrieved)
 
-    augmented = f"{injection}\n\nCurrent user message:\n{query}" if injection else query
-    return chat.generate_chat_prompt(augmented, state, **kwargs)
+    return injection or ""
 
 
 def _indexed_files_table() -> List[List[str]]:
