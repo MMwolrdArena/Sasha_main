@@ -46,8 +46,8 @@ CONFLICT_STRONG_THRESHOLD = 72
 # APPLY_TO options:
 # - "context": inject [CURRENT INTERNAL STATE] block into context
 # - "user_bio": inject [CURRENT INTERNAL STATE] block into user_bio
-# - "character_context": write the clean State Preview into the Character Context field
-# When using "character_context", ai_identity should be disabled to avoid competing identity systems.
+# - "character_context": write the clean State Preview into the Character Context textbox
+# When using "character_context", disable ai_identity to avoid competing identity systems.
 STATE_BLOCK_HEADER = "[CURRENT INTERNAL STATE]"
 STATE_BLOCK_FOOTER = "[END CURRENT INTERNAL STATE]"
 CONTEXT_PREFIX = "Use this as current-moment tone guidance, not identity or memory:"
@@ -552,6 +552,8 @@ def ui():
         for w in curr_inputs + [sentence_count]:
             w.change(_live_update, inputs=live_inputs, outputs=[preview, compiled_state])
 
+        character_context_box = shared.gradio.get("context")
+
         def _apply(auto_apply_v: bool, auto_recenter_v: bool, rate: float, sentence_n: int, *vals):
             try:
                 rate = float(rate)
@@ -580,16 +582,32 @@ def ui():
                 "ai_state_sentence_count": sentence_n,
                 "ai_state_compiled": compiled_block_local,
             }
+            visible_context_update = gr.update()
             if auto_apply_v:
-                state_patch.update(_apply_to_interface_state(compiled_block_local, compiled_line_local))
+                if APPLY_TO == "character_context":
+                    character_context_text = (
+                        "Sasha's current character context is determined by her active AI State.\n\n"
+                        f"{compiled_line_local}"
+                    )
+                    state_patch["context"] = character_context_text
+                    visible_context_update = character_context_text
+                else:
+                    state_patch.update(_apply_to_interface_state(compiled_block_local, compiled_line_local))
 
             current_vals = [current_p[d["key"]] for d in trait_defs]
-            return current_vals + [compiled_line_local, compiled_block_local, state_patch]
+            result = current_vals + [compiled_line_local, compiled_block_local, state_patch]
+            if character_context_box is not None:
+                result.append(visible_context_update)
+            return result
+
+        apply_outputs = curr_inputs + [preview, compiled_state, shared.gradio.get("interface_state")]
+        if character_context_box is not None:
+            apply_outputs.append(character_context_box)
 
         apply_btn.click(
             _apply,
             inputs=[auto_apply, auto_recenter, drift_rate, sentence_count] + curr_inputs + base_inputs,
-            outputs=curr_inputs + [preview, compiled_state, shared.gradio.get("interface_state")],
+            outputs=apply_outputs,
         )
 
         def _reset_current_to_baseline(*vals):
