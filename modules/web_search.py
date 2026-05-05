@@ -1,12 +1,9 @@
 import concurrent.futures
-import html
 import ipaddress
-import random
-import re
 import socket
 from concurrent.futures import as_completed
 from datetime import datetime
-from urllib.parse import parse_qs, quote_plus, urljoin, urlparse
+from urllib.parse import urljoin, urlparse
 
 import requests
 
@@ -76,81 +73,101 @@ def download_web_page(url, timeout=10, include_links=False):
         return ""
 
 
-def perform_web_search(query, num_pages=3, max_workers=5, timeout=10, fetch_content=True):
-    """Perform web search and return results, optionally with page content"""
+SEARCH_MAX_RESULTS_DEFAULT = 10
+PAGE_FETCH_TIMEOUT = 10
+PAGE_EXCERPT_CHARS = 4000
+
+
+def _get_ddgs_client():
     try:
-        search_url = f"https://html.duckduckgo.com/html/?q={quote_plus(query)}"
+        from ddgs import DDGS
+        return DDGS
+    except Exception:
+        try:
+            from duckduckgo_search import DDGS
+            return DDGS
+        except Exception as exc:
+            raise RuntimeError(
+                "DuckDuckGo search package is not installed. Install `ddgs` or `duckduckgo_search`."
+            ) from exc
 
-        agents = [
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
-        ]
 
-        response = requests.get(search_url, headers={'User-Agent': random.choice(agents)}, timeout=timeout)
-        response.raise_for_status()
-        response_text = response.text
+def duckduckgo_search(query, max_results=SEARCH_MAX_RESULTS_DEFAULT):
+    query = (query or '').strip()
+    if not query:
+        return []
 
-        # Extract results - title and URL come from the same <a class="result__a"> element
-        result_links = re.findall(r'<a[^>]*class="[^"]*result__a[^"]*"[^>]*>(.*?)</a>', response_text, re.DOTALL)
-        result_tags = re.findall(r'<a([^>]*class="[^"]*result__a[^"]*"[^>]*)>', response_text, re.DOTALL)
-
-        # Prepare download tasks
-        download_tasks = []
-        for i, (tag_attrs, raw_title) in enumerate(zip(result_tags, result_links)):
-            if num_pages is not None and i >= num_pages:
-                break
-            # Extract href and resolve the actual URL from DuckDuckGo's redirect link
-            href_match = re.search(r'href="([^"]*)"', tag_attrs)
-            if not href_match:
+    DDGS = _get_ddgs_client()
+    results = []
+    with DDGS() as ddgs:
+        for item in ddgs.text(
+            query,
+            max_results=max_results,
+            safesearch='moderate',
+            region='wt-wt',
+        ):
+            title = str(item.get('title') or '').strip()
+            url = str(item.get('href') or item.get('url') or '').strip()
+            snippet = str(item.get('body') or item.get('snippet') or '').strip()
+            if not url:
                 continue
-            uddg = parse_qs(urlparse(html.unescape(href_match.group(1))).query).get('uddg', [''])[0]
-            if not uddg:
-                continue
-            title = html.unescape(re.sub(r'<[^>]+>', '', raw_title).strip())
-            download_tasks.append((uddg, title, len(download_tasks)))
 
-        search_results = [None] * len(download_tasks)  # Pre-allocate to maintain order
+            results.append({
+                'title': title,
+                'url': url,
+                'snippet': snippet,
+                'source': 'duckduckgo',
+                'rank': len(results) + 1,
+            })
 
-        if not fetch_content:
-            for url, title, index in download_tasks:
-                search_results[index] = {
-                    'title': title,
-                    'url': url,
-                    'content': ''
+    return results
+
+
+def perform_web_search(query, num_pages=3, max_workers=5, timeout=PAGE_FETCH_TIMEOUT, fetch_content=True, max_results=SEARCH_MAX_RESULTS_DEFAULT):
+    query = (query or '').strip()
+    if not query:
+        return {'query': query, 'provider': 'duckduckgo', 'results': [], 'pages': []}
+
+    search_results = duckduckgo_search(query, max_results=max_results)
+    if not fetch_content or num_pages <= 0:
+        return {'query': query, 'provider': 'duckduckgo', 'results': search_results, 'pages': []}
+
+    top_results = search_results[:num_pages]
+    pages = [None] * len(top_results)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_task = {
+            executor.submit(download_web_page, item['url'], timeout=timeout): (idx, item)
+            for idx, item in enumerate(top_results)
+        }
+
+        for future in as_completed(future_to_task):
+            idx, item = future_to_task[future]
+            try:
+                content = (future.result() or '').strip()
+                if content:
+                    pages[idx] = {
+                        'url': item['url'],
+                        'title': item['title'],
+                        'excerpt': content[:PAGE_EXCERPT_CHARS],
+                        'ok': True,
+                    }
+                else:
+                    pages[idx] = {
+                        'url': item['url'],
+                        'title': item['title'],
+                        'error': 'No extractable content',
+                        'ok': False,
+                    }
+            except Exception as exc:
+                pages[idx] = {
+                    'url': item['url'],
+                    'title': item['title'],
+                    'error': str(exc),
+                    'ok': False,
                 }
 
-            return search_results
-
-        # Download pages in parallel
-        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-            # Submit all download tasks
-            future_to_task = {
-                executor.submit(download_web_page, task[0]): task
-                for task in download_tasks
-            }
-
-            # Collect results as they complete
-            for future in as_completed(future_to_task):
-                url, title, index = future_to_task[future]
-                try:
-                    content = future.result()
-                    search_results[index] = {
-                        'title': title,
-                        'url': url,
-                        'content': content
-                    }
-                except Exception:
-                    search_results[index] = {
-                        'title': title,
-                        'url': url,
-                        'content': ''
-                    }
-
-        return search_results
-
-    except Exception as e:
-        logger.error(f"Error performing web search: {e}")
-        return []
+    return {'query': query, 'provider': 'duckduckgo', 'results': search_results, 'pages': [p for p in pages if p is not None]}
 
 
 def truncate_content_by_tokens(content, max_tokens=8192):
@@ -172,44 +189,88 @@ def truncate_content_by_tokens(content, max_tokens=8192):
 def add_web_search_attachments(history, row_idx, user_message, search_query, state):
     """Perform web search and add results as attachments"""
     if not search_query:
-        logger.warning("No search query provided")
+        logger.warning('No search query provided')
         return
 
+    logger.info(f'Using search query: {search_query}')
+
     try:
-        logger.info(f"Using search query: {search_query}")
-
-        # Perform web search
-        num_pages = int(state.get('web_search_pages', 3))
-        search_results = perform_web_search(search_query, num_pages)
-
-        if not search_results:
-            logger.warning("No search results found")
-            return
-
-        # Filter out failed downloads before adding attachments
-        successful_results = [result for result in search_results if result['content'].strip()]
-
-        if not successful_results:
-            logger.warning("No successful downloads to add as attachments")
-            return
-
-        # Add search results as attachments
-        key = f"user_{row_idx}"
+        num_pages = max(0, int(state.get('web_search_pages', 3)))
+        search_data = perform_web_search(
+            search_query,
+            num_pages=num_pages,
+            timeout=PAGE_FETCH_TIMEOUT,
+            fetch_content=num_pages > 0,
+            max_results=SEARCH_MAX_RESULTS_DEFAULT,
+        )
+    except Exception as exc:
+        logger.exception(f'web_search backend failed for query: {search_query}')
+        key = f'user_{row_idx}'
+        history.setdefault('metadata', {})
         if key not in history['metadata']:
-            history['metadata'][key] = {"timestamp": get_current_timestamp()}
-        if "attachments" not in history['metadata'][key]:
-            history['metadata'][key]["attachments"] = []
+            history['metadata'][key] = {'timestamp': get_current_timestamp()}
+        history['metadata'][key].setdefault('attachments', []).append({
+            'name': 'WEB SEARCH ERROR',
+            'type': 'text/plain',
+            'url': '',
+            'content': (
+                f'WEB SEARCH ERROR\nQuery: {search_query}\nProvider: DuckDuckGo\n'
+                f'Error: DuckDuckGo backend failed: {exc}\n\n'
+                'Do not retry automatically with a broader query unless the user asks.'
+            ),
+        })
+        return
 
-        for result in successful_results:
-            attachment = {
-                "name": result['title'],
-                "type": "text/html",
-                "url": result['url'],
-                "content": truncate_content_by_tokens(result['content'])
-            }
-            history['metadata'][key]["attachments"].append(attachment)
+    results = search_data['results']
+    if not results:
+        logger.warning(f'DuckDuckGo returned no results for query: {search_query}')
+        return
 
-        logger.info(f"Added {len(successful_results)} successful web search results as attachments.")
+    lines = [
+        'WEB SEARCH RESULTS',
+        f'Query: {search_query}',
+        'Provider: DuckDuckGo',
+        '',
+    ]
+    for result in results:
+        lines.extend([
+            f"[{result['rank']}] {result['title'] or '(Untitled)'}",
+            f"URL: {result['url']}",
+            f"Snippet: {result['snippet']}",
+            '',
+        ])
 
-    except Exception as e:
-        logger.error(f"Error in web search: {e}")
+    pages = search_data['pages']
+    if pages:
+        lines.extend(['FETCHED PAGE EXCERPTS', ''])
+        for idx, page in enumerate(pages, start=1):
+            lines.append(f"[{idx}] {page.get('title') or '(Untitled)'}")
+            lines.append(f"URL: {page.get('url', '')}")
+            if page.get('ok'):
+                lines.append('Excerpt:')
+                lines.append(page.get('excerpt', ''))
+            else:
+                lines.append(f"Error: {page.get('error', 'unknown error')}")
+            lines.append('')
+
+    key = f'user_{row_idx}'
+    history.setdefault('metadata', {})
+    if key not in history['metadata']:
+        history['metadata'][key] = {'timestamp': get_current_timestamp()}
+    history['metadata'][key].setdefault('attachments', []).append({
+        'name': f'web_search_{search_query[:60]}',
+        'type': 'text/plain',
+        'url': '',
+        'content': truncate_content_by_tokens('\n'.join(lines)),
+    })
+
+    for page in pages:
+        if page.get('ok'):
+            history['metadata'][key]['attachments'].append({
+                'name': page.get('title') or page.get('url'),
+                'type': 'text/html',
+                'url': page.get('url', ''),
+                'content': truncate_content_by_tokens(page.get('excerpt', '')),
+            })
+
+    logger.info(f"Added web search summary with {len(results)} results and {len(pages)} fetched pages.")
