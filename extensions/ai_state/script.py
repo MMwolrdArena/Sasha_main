@@ -324,7 +324,20 @@ def _save_preset(name: str, profile: Dict[str, int]) -> List[str]:
 
 
 def _extract_profile(vals: List[int], trait_defs: List[dict]) -> Dict[str, int]:
-    return {trait_defs[i]["key"]: int(vals[i]) for i in range(len(trait_defs))}
+    profile = {}
+
+    for i, d in enumerate(trait_defs):
+        raw = vals[i] if i < len(vals) else None
+
+        if raw is None:
+            raw = d.get("default", 0)
+
+        try:
+            profile[d["key"]] = int(raw)
+        except (TypeError, ValueError):
+            profile[d["key"]] = int(d.get("default", 0))
+
+    return profile
 
 
 def _apply_to_interface_state(compiled_block: str) -> dict:
@@ -404,7 +417,13 @@ def ui():
 
         def _build_preview(sentence_n: int, *vals):
             profile = _extract_profile(list(vals), trait_defs)
-            return _compile_state_line(profile, int(sentence_n)), _compile_state_block(profile, int(sentence_n))
+
+            try:
+                sentence_n = int(sentence_n)
+            except (TypeError, ValueError):
+                sentence_n = STATE_SENTENCE_COUNT_DEFAULT
+
+            return _compile_state_line(profile, sentence_n), _compile_state_block(profile, sentence_n)
 
         def _live_update(live: bool, sentence_n: int, *vals):
             if not live:
@@ -416,6 +435,16 @@ def ui():
             w.change(_live_update, inputs=live_inputs, outputs=[preview, compiled_state])
 
         def _apply(auto_apply_v: bool, auto_recenter_v: bool, rate: float, sentence_n: int, *vals):
+            try:
+                rate = float(rate)
+            except (TypeError, ValueError):
+                rate = DRIFT_RATE_PER_APPLY
+
+            try:
+                sentence_n = int(sentence_n)
+            except (TypeError, ValueError):
+                sentence_n = STATE_SENTENCE_COUNT_DEFAULT
+
             split = len(trait_defs)
             current_p = _extract_profile(list(vals[:split]), trait_defs)
             baseline_p = _extract_profile(list(vals[split:]), trait_defs)
@@ -424,13 +453,13 @@ def ui():
             if auto_recenter_v:
                 current_p = _drift_toward_baseline(current_p, baseline_p, rate)
 
-            compiled_line_local = _compile_state_line(current_p, int(sentence_n))
-            compiled_block_local = _compile_state_block(current_p, int(sentence_n))
+            compiled_line_local = _compile_state_line(current_p, sentence_n)
+            compiled_block_local = _compile_state_block(current_p, sentence_n)
             _save_runtime(current_p, baseline_p, compiled_line_local)
 
             state_patch = {
                 "ai_state_auto_apply": bool(auto_apply_v),
-                "ai_state_sentence_count": int(sentence_n),
+                "ai_state_sentence_count": sentence_n,
                 "ai_state_compiled": compiled_block_local,
             }
             if auto_apply_v:
@@ -476,12 +505,25 @@ def ui():
 
         reset_all_btn.click(_reset_all_defaults, outputs=curr_inputs + base_inputs + [preview, compiled_state])
 
-        def _load(name: str, *base_vals):
+        def _load(name: str, sentence_n: int, *base_vals):
             base = _extract_profile(list(base_vals), trait_defs)
             loaded = _load_preset(name, base)
-            return [loaded[d["key"]] for d in trait_defs]
 
-        load_preset_btn.click(_load, inputs=[preset_dd] + base_inputs, outputs=curr_inputs)
+            try:
+                sentence_n = int(sentence_n)
+            except (TypeError, ValueError):
+                sentence_n = STATE_SENTENCE_COUNT_DEFAULT
+
+            line = _compile_state_line(loaded, sentence_n)
+            block = _compile_state_block(loaded, sentence_n)
+
+            return [loaded[d["key"]] for d in trait_defs] + [line, block]
+
+        load_preset_btn.click(
+            _load,
+            inputs=[preset_dd, sentence_count] + base_inputs,
+            outputs=curr_inputs + [preview, compiled_state],
+        )
 
         def _save(name: str, *vals):
             prof = _extract_profile(list(vals), trait_defs)
