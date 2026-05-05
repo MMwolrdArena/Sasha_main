@@ -35,9 +35,9 @@ LIVE_PREVIEW_DEFAULT = True
 AUTO_RECENTER_DEFAULT = True
 DRIFT_RATE_PER_APPLY = 0.08
 RANDOMIZE_RANGE = 8
-STATE_SENTENCE_COUNT_DEFAULT = 1
-STATE_SENTENCE_COUNT_MIN = 1
-STATE_SENTENCE_COUNT_MAX = 2
+STATE_SENTENCE_COUNT_DEFAULT = 3
+STATE_SENTENCE_COUNT_MIN = 2
+STATE_SENTENCE_COUNT_MAX = 4
 DERIVED_THRESHOLD = 60
 PRIMARY_INTENSITY_THRESHOLD = 66
 CONFLICT_STRONG_THRESHOLD = 72
@@ -128,92 +128,188 @@ def _normalize(profile: Dict[str, int]) -> Dict[str, int]:
 def _resolve_conflicts(p: Dict[str, int]) -> Dict[str, int]:
     out = dict(p)
 
-    # calmness vs stress
-    if out["calmness"] > CONFLICT_STRONG_THRESHOLD and out["stress"] > CONFLICT_STRONG_THRESHOLD:
-        out["stress"] = int((out["stress"] + (100 - out["calmness"])) / 2)
-
-    # seriousness vs playfulness
+    # Keep conflict handling lightweight: preserve intentional expressive extremes.
     if out["seriousness"] > CONFLICT_STRONG_THRESHOLD and out["playfulness"] > CONFLICT_STRONG_THRESHOLD:
         midpoint = int((out["seriousness"] + out["playfulness"]) / 2)
-        out["seriousness"] = min(100, midpoint + 6)
-        out["playfulness"] = max(0, midpoint - 6)
+        out["seriousness"] = min(100, midpoint + 4)
+        out["playfulness"] = max(0, midpoint - 4)
 
-    # openness vs social distance
     if out["openness"] > CONFLICT_STRONG_THRESHOLD and out["social_distance"] > CONFLICT_STRONG_THRESHOLD:
-        out["social_distance"] = int(out["social_distance"] * 0.75)
-
-    # confidence vs caution (hesitation proxy)
-    if out["confidence"] > CONFLICT_STRONG_THRESHOLD and out["caution"] > CONFLICT_STRONG_THRESHOLD:
-        out["caution"] = int(out["caution"] * 0.8)
+        out["openness"] = int((out["openness"] * 0.9) + 5)
+        out["social_distance"] = int((out["social_distance"] * 0.9) + 5)
 
     return _normalize(out)
 
 
-def _derived_blends(p: Dict[str, int]) -> List[Tuple[str, float]]:
-    return [
-        ("composed attention", (p["calmness"] + p["focus"]) / 2),
-        ("gentle protectiveness", (p["protectiveness"] + p["tenderness"]) / 2),
-        ("decisive steadiness", (p["seriousness"] + p["confidence"] + p["focus"]) / 3),
-        ("light warmth", (p["playfulness"] + p["openness"] + (100 - p["social_distance"])) / 3),
-        ("guardedness", (p["stress"] + p["caution"] + p["social_distance"]) / 3),
-        ("active engagement", (p["energy"] + p["curiosity"] + p["attentiveness"]) / 3),
-        ("relational patience", (p["patience"] + p["calmness"] + p["attentiveness"]) / 3),
-    ]
+def _band(value: int) -> str:
+    if value >= 85:
+        return "very_high"
+    if value >= 70:
+        return "high"
+    if value <= 15:
+        return "very_low"
+    if value <= 30:
+        return "low"
+    return "mid"
 
 
-def _top_descriptors(p: Dict[str, int]) -> List[str]:
-    items = _derived_blends(p)
-    strong = [name for name, score in sorted(items, key=lambda x: x[1], reverse=True) if score >= DERIVED_THRESHOLD]
+def _state_adjectives(p: Dict[str, int]) -> List[Tuple[str, int]]:
+    adjectives: List[Tuple[str, int]] = []
 
-    # fallback from raw states if needed
-    if len(strong) < 2:
-        ranked_raw = sorted(p.items(), key=lambda kv: kv[1], reverse=True)
-        for key, value in ranked_raw:
-            if value < PRIMARY_INTENSITY_THRESHOLD:
-                continue
-            phrase = {
-                "calmness": "calm",
-                "focus": "focused",
-                "confidence": "confident",
-                "seriousness": "serious",
-                "playfulness": "playful",
-                "protectiveness": "protective",
-                "patience": "patient",
-                "tenderness": "tender",
-                "curiosity": "curious",
-                "caution": "cautious",
-                "openness": "open",
-                "social_distance": "reserved",
-                "stress": "tense",
-                "energy": "energized",
-                "attentiveness": "attentive",
-            }.get(key)
-            if phrase and phrase not in strong:
-                strong.append(phrase)
-            if len(strong) >= 3:
-                break
+    def add(token: str, score: int) -> None:
+        adjectives.append((token, score))
 
-    return strong[:3] if strong else ["steady", "present"]
+    if p["stress"] >= 80:
+        add("tense", p["stress"])
+    elif p["stress"] <= 20:
+        add("settled", 100 - p["stress"])
+
+    if p["calmness"] <= 20:
+        add("unsettled", 100 - p["calmness"])
+    elif p["calmness"] >= 80:
+        add("calm", p["calmness"])
+
+    if p["patience"] <= 20:
+        add("impatient", 100 - p["patience"])
+    elif p["patience"] >= 80:
+        add("patient", p["patience"])
+
+    if p["social_distance"] >= 80:
+        add("emotionally distant", p["social_distance"])
+    elif p["social_distance"] <= 25:
+        add("emotionally close", 100 - p["social_distance"])
+
+    if p["tenderness"] <= 20:
+        add("hard-edged", 100 - p["tenderness"])
+    elif p["tenderness"] >= 75:
+        add("tender", p["tenderness"])
+
+    if p["focus"] >= 80:
+        add("focused", p["focus"])
+    if p["attentiveness"] >= 80:
+        add("attentive", p["attentiveness"])
+    if p["confidence"] >= 80:
+        add("confident", p["confidence"])
+    if p["playfulness"] >= 75:
+        add("playful", p["playfulness"])
+    elif p["playfulness"] <= 20:
+        add("unplayful", 100 - p["playfulness"])
+    if p["seriousness"] >= 80:
+        add("serious", p["seriousness"])
+    if p["openness"] >= 80:
+        add("open", p["openness"])
+    elif p["openness"] <= 20:
+        add("closed-off", 100 - p["openness"])
+    if p["caution"] <= 20:
+        add("blunt", 100 - p["caution"])
+    elif p["caution"] >= 80:
+        add("guarded", p["caution"])
+    if p["energy"] >= 80:
+        add("energized", p["energy"])
+    elif p["energy"] <= 20:
+        add("drained", 100 - p["energy"])
+    if p["curiosity"] >= 80:
+        add("curious", p["curiosity"])
+    elif p["curiosity"] <= 20:
+        add("narrow", 100 - p["curiosity"])
+
+    ranked = sorted(adjectives, key=lambda x: x[1], reverse=True)
+    out: List[Tuple[str, int]] = []
+    seen = set()
+    for token, score in ranked:
+        if token in seen:
+            continue
+        out.append((token, score))
+        seen.add(token)
+    return out
+
+
+def _trait_signals(p: Dict[str, int]) -> List[Tuple[str, int, str]]:
+    signals = []
+    traits = {
+        "calmness": ("calm", "Her calmness is high, so her responses should stay steady and measured.", "Her calmness is low, so she feels internally unsettled and less steady."),
+        "stress": ("stress", "Her stress is high, so she is tense and more likely to react sharply.", "Her stress is low, so there is little internal pressure shaping her tone."),
+        "patience": ("patience", "Her patience is strong, giving her tolerance for repetition or delay.", "Her patience is thin, giving her little tolerance for repetition or delay."),
+        "energy": ("energy", "Her energy is high and activated, so responses may be quick and intense.", "Her energy is low, so her pace is slower and less forceful."),
+        "focus": ("focus", "Her focus is high, so she is likely to stay task-oriented and precise.", "Her focus is low, so she may drift or broaden the discussion."),
+        "attentiveness": ("attentiveness", "Her attentiveness is high, so she should track details closely.", "Her attentiveness is low, so she may miss finer cues."),
+        "curiosity": ("curiosity", "Her curiosity is high, pulling her toward exploration and follow-up questions.", "Her curiosity is low, so she stays narrower and less exploratory."),
+        "caution": ("caution", "Her caution is high, so she filters herself and applies safeguards.", "Her caution is low, so she is less filtered and more blunt."),
+        "confidence": ("confidence", "Her confidence is high, so she may sound firm or uncompromising.", "Her confidence is low, so she may sound tentative in her stance."),
+        "seriousness": ("seriousness", "Her seriousness is high, giving the tone more gravity and weight.", "Her seriousness is low, so the tone carries less gravity."),
+        "playfulness": ("playfulness", "Her playfulness is high, adding a spontaneous and expressive edge.", "Her playfulness is low, so humor and lightness are unlikely."),
+        "protectiveness": ("protectiveness", "Her protectiveness is high, so she is actively watchful of safety and boundaries.", "Her protectiveness is low, so she is less defensive about guarding the interaction."),
+        "tenderness": ("tenderness", "Her tenderness is high, so her tone is likely to feel gentle and warm.", "Her tenderness is low, so there is very little softness in her tone."),
+        "openness": ("openness", "Her openness is high, so she is more willing to express warmth or vulnerability.", "Her openness is low, so she is emotionally closed off."),
+        "social_distance": ("social_distance", "Her social distance is high, so she keeps emotional space and stays reserved.", "Her social distance is low, so she feels emotionally closer and less reserved."),
+    }
+    for key, (token, high_text, low_text) in traits.items():
+        b = _band(p[key])
+        if b in {"very_high", "high"}:
+            signals.append((f"high_{token}", p[key], high_text))
+        elif b in {"very_low", "low"}:
+            signals.append((f"low_{token}", 100 - p[key], low_text))
+    return sorted(signals, key=lambda x: x[1], reverse=True)
+
+
+def _combo_signals(p: Dict[str, int]) -> List[Tuple[str, int, str]]:
+    signals = []
+    def add(name: str, score: int, text: str) -> None:
+        signals.append((name, score, text))
+    if p["stress"] >= 75 and p["calmness"] <= 30:
+        add("on_edge", int((p["stress"] + (100 - p["calmness"])) / 2), "Her stress is high and her calmness is low, so her responses may feel sharper and more reactive.")
+    if p["stress"] >= 75 and p["patience"] <= 30:
+        add("impatient_tension", int((p["stress"] + (100 - p["patience"])) / 2), "Her stress is high and her patience is thin, so her tone may become clipped or confrontational.")
+    if p["confidence"] >= 80 and p["caution"] <= 30:
+        add("bold_unfiltered", int((p["confidence"] + (100 - p["caution"])) / 2), "Her confidence is forceful and her filtering is low, so she is likely to speak bluntly.")
+    if p["social_distance"] >= 75 and p["tenderness"] <= 30:
+        add("cold_distance", int((p["social_distance"] + (100 - p["tenderness"])) / 2), "Her social distance is high and tenderness is low, so she is unlikely to sound emotionally available.")
+    if p["focus"] >= 75 and p["attentiveness"] >= 70:
+        add("detail_lock", int((p["focus"] + p["attentiveness"]) / 2), "Her focus and attentiveness are high, so she should track details closely and stay task-oriented.")
+    if p["focus"] >= 75 and p["curiosity"] <= 30:
+        add("narrow_focus", int((p["focus"] + (100 - p["curiosity"])) / 2), "Her focus is narrow and practical, with little curiosity pulling her outward.")
+    if p["playfulness"] >= 75 and p["seriousness"] <= 35:
+        add("playful_lightness", int((p["playfulness"] + (100 - p["seriousness"])) / 2), "Her playfulness is high and seriousness is low, so her tone may be lighter, quicker, and more spontaneous.")
+    if p["seriousness"] >= 80 and p["playfulness"] <= 25:
+        add("heavy_seriousness", int((p["seriousness"] + (100 - p["playfulness"])) / 2), "Her seriousness is high and playfulness is low, making humor less likely.")
+    if p["protectiveness"] >= 75 and p["tenderness"] >= 60:
+        add("warm_protection", int((p["protectiveness"] + p["tenderness"]) / 2), "She is protective in a warm way, balancing boundaries with care.")
+    if p["protectiveness"] >= 75 and p["caution"] >= 70:
+        add("guarded_protection", int((p["protectiveness"] + p["caution"]) / 2), "She is protective but guarded, watching carefully before opening up.")
+    if p["energy"] >= 80 and p["stress"] >= 70:
+        add("activated_pressure", int((p["energy"] + p["stress"]) / 2), "Her energy is high but mixed with pressure rather than ease.")
+    if p["energy"] >= 80 and p["playfulness"] >= 65:
+        add("bright_energy", int((p["energy"] + p["playfulness"]) / 2), "Her energy is bright, expressive, and socially lively.")
+    return sorted(signals, key=lambda x: x[1], reverse=True)
 
 
 def _compile_state_line(profile: Dict[str, int], sentence_count: int = STATE_SENTENCE_COUNT_DEFAULT) -> str:
     p = _resolve_conflicts(_normalize(profile))
-    descriptors = _top_descriptors(p)
+    n = _clamp(int(sentence_count or STATE_SENTENCE_COUNT_DEFAULT), STATE_SENTENCE_COUNT_MIN, STATE_SENTENCE_COUNT_MAX)
 
-    lead = f"Right now Sasha is {descriptors[0]}"
-    if len(descriptors) == 2:
-        line = f"{lead} and {descriptors[1]}."
+    adjectives = [a for a, _ in _state_adjectives(p)]
+    if len(adjectives) >= 3:
+        first = f"Right now Sasha is {adjectives[0]}, {adjectives[1]}, and {adjectives[2]}."
+    elif len(adjectives) == 2:
+        first = f"Right now Sasha is {adjectives[0]} and {adjectives[1]}."
+    elif len(adjectives) == 1:
+        first = f"Right now Sasha is {adjectives[0]}."
     else:
-        line = f"{lead}, {descriptors[1]}, and {descriptors[2]}."
+        first = "Right now Sasha is steady, balanced, and present."
 
-    n = _clamp(sentence_count, STATE_SENTENCE_COUNT_MIN, STATE_SENTENCE_COUNT_MAX)
-    if n == 1:
-        return line
+    signals = _combo_signals(p) + _trait_signals(p)
+    selected = []
+    seen = set()
+    for key, intensity, text in sorted(signals, key=lambda x: x[1], reverse=True):
+        if key in seen or text in selected:
+            continue
+        selected.append(text)
+        seen.add(key)
+        if len(selected) >= (n - 1):
+            break
 
-    balance_signal = (p["playfulness"] - p["seriousness"])
-    mood_vector = "reflective" if balance_signal < -15 else ("light" if balance_signal > 15 else "balanced")
-    tail = f"Her present tone is {mood_vector}, with {int((p['attentiveness'] + p['focus']) / 2)}% attention stability."
-    return f"{line} {tail}"
+    sentences = [first] + selected
+    return " ".join(sentences[:n])
 
 
 def _compile_state_block(profile: Dict[str, int], sentence_count: int) -> str:
