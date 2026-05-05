@@ -212,6 +212,8 @@ def add_web_search_attachments(history, row_idx, user_message, search_query, sta
         history['metadata'][key].setdefault('attachments', []).append({
             'name': 'WEB SEARCH ERROR',
             'type': 'text/plain',
+            'source': 'web_search',
+            'metadata': {'source': 'web_search', 'provider': 'duckduckgo', 'query': search_query},
             'url': '',
             'content': (
                 f'WEB SEARCH ERROR\nQuery: {search_query}\nProvider: DuckDuckGo\n'
@@ -260,6 +262,8 @@ def add_web_search_attachments(history, row_idx, user_message, search_query, sta
     history['metadata'][key].setdefault('attachments', []).append({
         'name': f'web_search_{search_query[:60]}',
         'type': 'text/plain',
+        'source': 'web_search',
+        'metadata': {'source': 'web_search', 'provider': 'duckduckgo', 'query': search_query},
         'url': '',
         'content': truncate_content_by_tokens('\n'.join(lines)),
     })
@@ -269,6 +273,14 @@ def add_web_search_attachments(history, row_idx, user_message, search_query, sta
             history['metadata'][key]['attachments'].append({
                 'name': page.get('title') or page.get('url'),
                 'type': 'text/html',
+                'source': 'web_search',
+                'metadata': {
+                    'source': 'web_search',
+                    'provider': 'duckduckgo',
+                    'query': search_query,
+                    'url': page.get('url', ''),
+                    'title': page.get('title') or page.get('url'),
+                },
                 'url': page.get('url', ''),
                 'content': truncate_content_by_tokens(page.get('excerpt', '')),
             })

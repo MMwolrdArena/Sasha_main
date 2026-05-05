@@ -480,39 +480,85 @@ def format_message_timestamp(history, role, index, tooltip_include_timestamp=Tru
 def format_message_attachments(history, role, index):
     """Get formatted HTML for message attachments if available"""
     key = f"{role}_{index}"
-    if 'metadata' in history and key in history['metadata'] and 'attachments' in history['metadata'][key]:
-        attachments = history['metadata'][key]['attachments']
-        if not attachments:
-            return ""
+    if 'metadata' not in history or key not in history['metadata'] or 'attachments' not in history['metadata'][key]:
+        return ""
 
-        attachments_html = '<div class="message-attachments">'
-        for attachment in attachments:
+    attachments = history['metadata'][key]['attachments']
+    if not attachments:
+        return ""
+
+    normal_attachments = []
+    web_search_attachments = []
+
+    for attachment in attachments:
+        metadata = attachment.get('metadata') or {}
+        if attachment.get('source') == 'web_search' or metadata.get('source') == 'web_search':
+            web_search_attachments.append(attachment)
+        else:
+            normal_attachments.append(attachment)
+
+    attachments_html = '<div class="message-attachments">'
+
+    for attachment in normal_attachments:
+        name = html.escape(attachment["name"])
+
+        if attachment.get("type") == "image":
+            image_data = attachment.get("image_data", "")
+            attachments_html += (
+                f'<div class="attachment-box image-attachment">'
+                f'<img src="{image_data}" alt="{name}" class="image-preview" />'
+                f'<div class="attachment-name">{name}</div>'
+                f'</div>'
+            )
+        else:
+            if attachment.get("url"):
+                name = f'<a href="{html.escape(attachment["url"])}" target="_blank" rel="noopener noreferrer">{name}</a>'
+
+            attachments_html += (
+                f'<div class="attachment-box">'
+                f'<div class="attachment-icon">{attachment_svg}</div>'
+                f'<div class="attachment-name">{name}</div>'
+                f'</div>'
+            )
+
+    if web_search_attachments:
+        pages = len([att for att in web_search_attachments if att.get('type') == 'text/html'])
+        summary_text = f'Web Search · {pages} pages' if pages else 'Web Search'
+        attachments_html += (
+            '<details class="thinking-block web-search-block">'
+            '<summary class="thinking-header">'
+            f'{tool_svg_small}'
+            f'<span class="thinking-title">{summary_text}</span>'
+            '</summary>'
+            '<div class="thinking-content pretty_scrollbar"><div class="message-attachments">'
+        )
+
+        for attachment in web_search_attachments:
             name = html.escape(attachment["name"])
+            url = attachment.get('url', '')
+            content = attachment.get('content', '')
+            if url:
+                name = f'<a href="{html.escape(url)}" target="_blank" rel="noopener noreferrer">{name}</a>'
 
-            if attachment.get("type") == "image":
-                image_data = attachment.get("image_data", "")
-                attachments_html += (
-                    f'<div class="attachment-box image-attachment">'
-                    f'<img src="{image_data}" alt="{name}" class="image-preview" />'
-                    f'<div class="attachment-name">{name}</div>'
-                    f'</div>'
-                )
-            else:
-                # Make clickable if URL exists (web search)
-                if "url" in attachment:
-                    name = f'<a href="{html.escape(attachment["url"])}" target="_blank" rel="noopener noreferrer">{name}</a>'
+            snippet_html = ''
+            if content:
+                snippet = html.escape(content.strip())
+                snippet_html = f'<div class="attachment-snippet">{snippet}</div>'
 
-                attachments_html += (
-                    f'<div class="attachment-box">'
-                    f'<div class="attachment-icon">{attachment_svg}</div>'
-                    f'<div class="attachment-name">{name}</div>'
-                    f'</div>'
-                )
+            attachments_html += (
+                f'<div class="attachment-box web-search-result">'
+                f'<div class="attachment-icon">{attachment_svg}</div>'
+                '<div class="attachment-details">'
+                f'<div class="attachment-name">{name}</div>'
+                f'{snippet_html}'
+                '</div>'
+                '</div>'
+            )
 
-        attachments_html += '</div>'
-        return attachments_html
+        attachments_html += '</div></div></details>'
 
-    return ""
+    attachments_html += '</div>'
+    return attachments_html
 
 
 def get_message_tooltip(history, role, index, include_timestamp=True):
