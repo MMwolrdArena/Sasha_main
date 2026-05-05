@@ -43,10 +43,15 @@ PRIMARY_INTENSITY_THRESHOLD = 66
 CONFLICT_STRONG_THRESHOLD = 72
 
 # Prompt/context integration
+# APPLY_TO options:
+# - "context": inject [CURRENT INTERNAL STATE] block into context
+# - "user_bio": inject [CURRENT INTERNAL STATE] block into user_bio
+# - "character_context": write the clean State Preview into the Character Context field
+# When using "character_context", ai_identity should be disabled to avoid competing identity systems.
 STATE_BLOCK_HEADER = "[CURRENT INTERNAL STATE]"
 STATE_BLOCK_FOOTER = "[END CURRENT INTERNAL STATE]"
 CONTEXT_PREFIX = "Use this as current-moment tone guidance, not identity or memory:"
-APPLY_TO = "context"  # "context" or "user_bio"
+APPLY_TO = "character_context"  # "context", "user_bio", or "character_context"
 
 # Schema: key, label, default, min, max, step, help/description
 STATE_GROUPS: List[Tuple[str, List[dict]]] = [
@@ -330,6 +335,12 @@ def _strip_previous_state_block(text: str) -> str:
     return cleaned
 
 
+def _strip_block_to_body(block: str) -> str:
+    lines = [line for line in (block or "").splitlines() if line.strip()]
+    body = [line for line in lines if line not in {STATE_BLOCK_HEADER, STATE_BLOCK_FOOTER, CONTEXT_PREFIX}]
+    return " ".join(body).strip()
+
+
 def _merge_state_block(existing: str, block: str) -> str:
     base = _strip_previous_state_block(existing)
     return f"{base}\n\n{block}".strip() if base else block
@@ -436,7 +447,15 @@ def _extract_profile(vals: List[int], trait_defs: List[dict]) -> Dict[str, int]:
     return profile
 
 
-def _apply_to_interface_state(compiled_block: str) -> dict:
+def _apply_to_interface_state(compiled_block: str, compiled_line: str | None = None) -> dict:
+    if APPLY_TO == "character_context":
+        state_line = (compiled_line or "").strip() or _strip_block_to_body(compiled_block)
+        character_context = (
+            "Sasha's current character context is determined by her active AI State.\n\n"
+            f"{state_line}"
+        )
+        return {"context": character_context}
+
     key = "context" if APPLY_TO == "context" else "user_bio"
     target = shared.gradio.get(key)
     current_text = target.value if hasattr(target, "value") else ""
@@ -456,6 +475,9 @@ def state_modifier(state: dict) -> dict:
     if not compiled:
         current, _, _ = _load_runtime()
         compiled = _compile_state_block(current, int(state.get("ai_state_sentence_count", STATE_SENTENCE_COUNT_DEFAULT)))
+
+    if APPLY_TO == "character_context":
+        return state
 
     target_key = "context" if APPLY_TO == "context" else "user_bio"
     state[target_key] = _merge_state_block(state.get(target_key, ""), compiled)
@@ -559,7 +581,7 @@ def ui():
                 "ai_state_compiled": compiled_block_local,
             }
             if auto_apply_v:
-                state_patch.update(_apply_to_interface_state(compiled_block_local))
+                state_patch.update(_apply_to_interface_state(compiled_block_local, compiled_line_local))
 
             current_vals = [current_p[d["key"]] for d in trait_defs]
             return current_vals + [compiled_line_local, compiled_block_local, state_patch]
